@@ -1,0 +1,33 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Package managing all dependencies for this project",
+  "main": "server.js",
+  "scripts": {
+    "pretest": "eslint server.js",
+    "start": "nodemon server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shee69/CatColour-inator.git"
+  },
+  "author": "Nam Le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shee69/CatColour-inator/issues"
+  },
+  "homepage": "https://github.com/Shee69/CatColour-inator#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "package.json": "^0.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^2.0.20"
+  }
+}
