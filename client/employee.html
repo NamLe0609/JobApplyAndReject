@@ -21,7 +21,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">[NAME]</span>
+      <span class="d-block d-lg-none">Send CV</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
           Submit
           <span class="text-primary">Form</span>
         </h1>
-        <form>
+        <form id="submitForm">
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
@@ -91,42 +91,42 @@
               aria-describedby="basic-addon1" required>
           </div>
           <div class="row mb-3">
+            <div class="col-auto mb-1">
+              <input id="uni0" type="text" class="form-control" placeholder="University" aria-label="University" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input id="degree0" type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input id="durationEdu0" type="text" class="form-control" placeholder="Duration" aria-label="Duration" required>
+            </div>
             <div class="col-auto">
               <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
             </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="University" aria-label="University" required>
-            </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree" required>
-            </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Duration" aria-label="Duration" required>
-            </div>
           </div>
-          <div class="row mb-3">
+          <div id="jobForm" class="row mb-3">
+            <div class="col-auto mb-1">
+              <input id="job0" type="text" class="form-control" placeholder="Job title" aria-label="Job title" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input id="company0" type="text" class="form-control" placeholder="Company title" aria-label="Company title" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input id="durationJob0" type="text" class="form-control" placeholder="Duration" aria-label="Duration" required>
+            </div>
             <div class="col-auto">
-              <button class="btn btn-outline-secondary" type="button" id="button-add-experience">+</button>
-            </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Job title" aria-label="Job title" required>
-            </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Company title" aria-label="Company title" required>
-            </div>
-            <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Duration" aria-label="Duration" required>
+              <button class="btn btn-outline-secondary" type="button" id="button-add-job">+</button>
             </div>
           </div>
-          <div class="row mb-3">
+          <div id="skillForm" class="row mb-3">
             <div class="col-auto">
               <button class="btn btn-outline-secondary" type="button" id="button-add-skills">+</button>
             </div>
             <div class="col-auto mb-1">
-              <input type="text" class="form-control" placeholder="Skill" aria-label="Skill" required>
+              <input id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill" required>
             </div>
           </div>
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button id="submitBtn" class="btn btn-primary" type="submit">Submit form</button>
         </form>
       </div>
     </section>
