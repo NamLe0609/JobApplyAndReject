@@ -51,8 +51,42 @@
   </nav>
   <!-- Page Content-->
   <div class="container-fluid p-0">
-    <!--Main User Page-->
-    <div id="employeeContent">
+    <!--Welcome Page-->
+    <section id="welcomePage" class="resume-section">
+      <div class="resume-section-content">
+        <h1 class="mb-3">Are you an:</h1>
+        <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
+        <button id="employerPageBtn" type="button" class="btn btn-primary btn-lg">Employer</button>
+      </div>
+    </section>
+
+    <!--Select Company Page-->
+    <section id="companySelectPage" class="resume-section" hidden>
+      <div class="resume-section-content">
+        <h1 class="mb-3">Choose a company
+          <span class="text-primary">you want to apply to</span>
+        </h1>
+        <form id="companySelectForm">
+          <label for="validationDefault0" class="form-label">Company</label>
+          <select class="form-select mb-3" id="validationDefault0" required>
+            <option selected disabled value="">Choose company</option>
+            <option>option1</option>
+          </select>
+          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <h2>or if you have already submitted</h2>
+        <form id="companySelectForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">User ID</label>
+          </div>
+          <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <!--Main Company Page-->
+    <div id="employeeContent" hidden>
       <!-- About-->
       <section class="resume-section" id="about">
         <div class="resume-section-content">
@@ -113,6 +147,20 @@
       <section class="resume-section" id="education">
         <div class="resume-section-content">
           <h2 class="mb-5">Education</h2>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[UNIVERSITY]</h3>
+              <div class="subheading mb-3">[DEGREE]</div>
+              <p>[GRADE]</p>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[UNIVERSITY]</h3>
+              <div class="subheading mb-3">[DEGREE]</div>
+              <p>[GRADE]</p>
+            </div>
+          </div>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
               <h3 class="mb-0">[UNIVERSITY]</h3>
