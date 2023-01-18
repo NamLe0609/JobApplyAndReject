@@ -67,12 +67,20 @@
           <span class="text-primary">you want to apply to</span>
         </h1>
         <form id="companySelectForm">
-          <label for="validationDefault04" class="form-label">Company</label>
-          <select class="form-select mb-3" id="validationDefault04" required>
+          <label for="validationDefault0" class="form-label">Company</label>
+          <select class="form-select mb-3" id="validationDefault0" required>
             <option selected disabled value="">Choose company</option>
             <option>option1</option>
           </select>
-          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit form</button>
+          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <h2>or if you have already submitted</h2>
+        <form id="companySelectForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">User ID</label>
+          </div>
+          <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     </section>

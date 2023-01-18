@@ -6,11 +6,11 @@
 //
 // Scripts
 //
-
 window.addEventListener("DOMContentLoaded", (event) => {
+
   // Activate Bootstrap scrollspy on the main nav element
-  const sideNav = document.body.querySelector("#sideNav");
-  if (sideNav) {
+  let sideNavBar = document.body.querySelector("#sideNav");
+  if (sideNavBar) {
     new bootstrap.ScrollSpy(document.body, {
       target: "#sideNav",
       offset: 74,
@@ -32,14 +32,44 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 // Starting from here is not from template
+let welcomePage = document.getElementById("welcomePage");
+let companySelectPage = document.getElementById("companySelectPage");
+let employeeContent = document.getElementById("employeeContent");
+let sideNav = document.getElementById("sideNav");
+//Load employee version of page
+
+//Load company choose
+let employeePageBtn = document.getElementById("employeePageBtn");
+employeePageBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  welcomePage.setAttribute("hidden", "");
+  companySelectPage.removeAttribute("hidden");
+});
+
+//Load main employee view
+//Code from: https://tom-select.js.org/examples/validation/?
+let companySelectForm = document.getElementById("companySelectForm");
+companySelectForm.addEventListener("submit", (event) => {
+  companySelectForm.classList.add("was-validated");
+  if (companySelectForm.checkValidity()) {
+    event.preventDefault();
+    event.stopPropagation();
+    companySelectPage.setAttribute("hidden", "");
+    sideNav.removeAttribute("hidden");
+    employeeContent.removeAttribute("hidden");
+  }
+}, false);
+
+//Idea for template literals to add html from:
+//https://stackoverflow.com/questions/16270761/how-to-insert-a-large-block-of-html-in-javascript
 
 //JS for adding new fields for skills
 let addSkillBtn = document.getElementById("button-add-skills");
 let counterSkill = 1;
 addSkillBtn.addEventListener("click", (event) => {
   if (counterSkill < 3) {
-    event.preventDefault;
-    let submitBtn = document.getElementById("submitBtn");
+    event.preventDefault();
+    let submitFormBtn = document.getElementById("submitFormBtn");
     let submitSection = document.getElementById("submitForm");
     let div = document.createElement("div");
     div.setAttribute("class", "row mb-3");
@@ -53,7 +83,7 @@ addSkillBtn.addEventListener("click", (event) => {
         </div>
     `;
     counterSkill++;
-    submitSection.insertBefore(div, submitBtn);
+    submitSection.insertBefore(div, submitFormBtn);
     addDeleteToBtnSkill(`button-remove-skills${counterSkill - 1}`);
   }
 });
@@ -61,7 +91,7 @@ addSkillBtn.addEventListener("click", (event) => {
 function addDeleteToBtnSkill(id) {
   let btn = document.getElementById(id);
   btn.addEventListener("click", (event) => {
-    event.preventDefault;
+    event.preventDefault();
     counterSkill--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
   });
@@ -72,7 +102,7 @@ let addEduBtn = document.getElementById("button-add-education");
 let counterEducation = 1;
 addEduBtn.addEventListener("click", (event) => {
   if (counterEducation < 3) {
-    event.preventDefault;
+    event.preventDefault();
     let jobForm = document.getElementById("jobForm");
     let submitSection = document.getElementById("submitForm");
     let div = document.createElement("div");
@@ -100,7 +130,7 @@ addEduBtn.addEventListener("click", (event) => {
 function addDeleteToBtnEdu(id) {
   let btn = document.getElementById(id);
   btn.addEventListener("click", (event) => {
-    event.preventDefault;
+    event.preventDefault();
     counterEducation--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
   });
@@ -111,7 +141,7 @@ let addJobBtn = document.getElementById("button-add-job");
 let counterJob = 1;
 addJobBtn.addEventListener("click", (event) => {
   if (counterJob < 3) {
-    event.preventDefault;
+    event.preventDefault();
     let skillForm = document.getElementById("skillForm");
     let submitSection = document.getElementById("submitForm");
     let div = document.createElement("div");
@@ -139,7 +169,7 @@ addJobBtn.addEventListener("click", (event) => {
 function addDeleteToBtnJob(id) {
   let btn = document.getElementById(id);
   btn.addEventListener("click", (event) => {
-    event.preventDefault;
+    event.preventDefault();
     counterJob--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
   });

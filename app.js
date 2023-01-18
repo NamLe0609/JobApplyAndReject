@@ -6,8 +6,11 @@ const path = require("path");
 app.use(express.static(path.join(__dirname, "client")));
 
 app.get("/", (req, res) => {
-  console.log("Here");
-  res.status(500).json({ essage: "Error" });
+  res.sendFile("index.html");
+});
+
+app.post("/sendForm", (req, res) => {
+  
 });
 
 module.exports = app;
