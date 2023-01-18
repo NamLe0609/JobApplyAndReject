@@ -20,8 +20,8 @@
 <body id="page-top">
   <!--Select employee or company page-->
   <!-- EMPLOYEE SECTION-->
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" hidden>
+  <!-- Navigation for User page-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Send CV</span>
     </a>
@@ -35,13 +35,7 @@
           <a class="nav-link js-scroll-trigger" href="#about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+          <a class="nav-link js-scroll-trigger" href="#requirement">Requirement</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#submit">Submit</a>
@@ -52,7 +46,7 @@
   <!-- Page Content-->
   <div class="container-fluid p-0">
     <!--Welcome Page-->
-    <section id="welcomePage" class="resume-section">
+    <section id="welcomePage" class="resume-section" hidden>
       <div class="resume-section-content">
         <h1 class="mb-3">Are you an:</h1>
         <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
@@ -86,97 +80,32 @@
     </section>
 
     <!--Main User Page-->
-    <div id="employeeContent" hidden>
+    <div id="employeeContent">
       <!-- About-->
       <section class="resume-section" id="about">
         <div class="resume-section-content">
           <h1 class="mb-0">
-            [FIRSTNAME]
-            <span class="text-primary">[LASTNAME]</span>
+            [COMPANY]
+            <span class="text-primary">[LTD/PLC]</span>
           </h1>
           <div class="subheading mb-5">
-            [COUNTRY OF ORIGIN] · [PHONE NO] · [NAME@EMAIL.COM]
+            [LOCATION] · [CONTACT] · [NAME@EMAIL.COM]
           </div>
+          <p class="lead mb-5">
+            DESCRIPTION ABOUT COMPANY
+          </p>
         </div>
       </section>
       <hr class="m-0">
-      <!-- Experience-->
-      <section class="resume-section" id="experience">
+      <!-- Requirement-->
+      <section class="resume-section" id="requirement">
         <div class="resume-section-content">
-          <h2 class="mb-5">Experience</h2>
+          <h2 class="mb-5">LOOKING <span class="text-primary">FOR</span></h2>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
-            </div>
+            <p class="lead mb-5">
+              DESCRIPTION OF NEEDED TALENTS
+            </p>
           </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <hr class="m-0">
-      <!-- Education-->
-      <section class="resume-section" id="education">
-        <div class="resume-section-content">
-          <h2 class="mb-5">Education</h2>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[UNIVERSITY]</h3>
-              <div class="subheading mb-3">[DEGREE]</div>
-              <p>[GRADE]</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <hr class="m-0">
-      <!-- Skills-->
-      <section class="resume-section" id="skills">
-        <div class="resume-section-content">
-          <h2 class="mb-5">Skills</h2>
-          <div class="subheading mb-3">Programming Languages & Tools</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
-            </li>
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
-            </li>
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
-            </li>
-          </ul>
-        </div>
       </section>
       <hr class="m-0">
       <!-- Submit form-->
