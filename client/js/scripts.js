@@ -64,13 +64,14 @@ companySelectForm.addEventListener("submit", (event) => {
 //https://stackoverflow.com/questions/16270761/how-to-insert-a-large-block-of-html-in-javascript
 
 //JS for adding new fields for skills
+let submitEmployeeSection = document.getElementById("submitEmployeeForm");
+
 let addSkillBtn = document.getElementById("button-add-skills");
 let counterSkill = 1;
 addSkillBtn.addEventListener("click", (event) => {
   if (counterSkill < 3) {
     event.preventDefault();
-    let submitFormBtn = document.getElementById("submitFormBtn");
-    let submitSection = document.getElementById("submitForm");
+    let submitEmployeeFormBtn = document.getElementById("submitEmployeeFormBtn");
     let div = document.createElement("div");
     div.setAttribute("class", "row mb-3");
     div.innerHTML = `
@@ -83,7 +84,7 @@ addSkillBtn.addEventListener("click", (event) => {
         </div>
     `;
     counterSkill++;
-    submitSection.insertBefore(div, submitFormBtn);
+    submitEmployeeSection.insertBefore(div, submitEmployeeFormBtn);
     addDeleteToBtnSkill(`button-remove-skills${counterSkill - 1}`);
   }
 });
@@ -104,7 +105,6 @@ addEduBtn.addEventListener("click", (event) => {
   if (counterEducation < 3) {
     event.preventDefault();
     let jobForm = document.getElementById("jobForm");
-    let submitSection = document.getElementById("submitForm");
     let div = document.createElement("div");
     div.setAttribute("class", "row mb-3");
     div.innerHTML = `
@@ -122,7 +122,7 @@ addEduBtn.addEventListener("click", (event) => {
     </div>
     `;
     counterEducation++;
-    submitSection.insertBefore(div, jobForm);
+    submitEmployeeSection.insertBefore(div, jobForm);
     addDeleteToBtnEdu(`button-remove-education${counterEducation - 1}`);
   }
 });
@@ -143,7 +143,6 @@ addJobBtn.addEventListener("click", (event) => {
   if (counterJob < 3) {
     event.preventDefault();
     let skillForm = document.getElementById("skillForm");
-    let submitSection = document.getElementById("submitForm");
     let div = document.createElement("div");
     div.setAttribute("class", "row mb-3");
     div.innerHTML = `
@@ -161,7 +160,7 @@ addJobBtn.addEventListener("click", (event) => {
     </div>
     `;
     counterJob++;
-    submitSection.insertBefore(div, skillForm);
+    submitEmployeeSection.insertBefore(div, skillForm);
     addDeleteToBtnJob(`button-remove-job${counterJob - 1}`);
   }
 });
