@@ -38,7 +38,7 @@
           <a class="nav-link js-scroll-trigger" href="#requirement">Requirement</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#submit">Submit</a>
+          <a class="nav-link js-scroll-trigger" href="#employeeSubmit">Submit</a>
         </li>
       </ul>
     </div>
@@ -46,7 +46,7 @@
   <!-- Page Content-->
   <div class="container-fluid p-0">
     <!--Welcome Page-->
-    <section id="welcomePage" class="resume-section" hidden>
+    <section id="welcomePage" class="resume-section">
       <div class="resume-section-content">
         <h1 class="mb-3">Are you an:</h1>
         <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
@@ -55,24 +55,28 @@
     </section>
 
     <!--Select Company Page-->
-    <section id="companySelectPage" class="resume-section" hidden>
+    <section id="companySelectPage" class="resume-section">
       <div class="resume-section-content">
         <h1 class="mb-3">Choose a company
           <span class="text-primary">you want to apply to</span>
         </h1>
         <form id="companySelectForm">
-          <label for="validationDefault0" class="form-label">Company</label>
-          <select class="form-select mb-3" id="validationDefault0" required>
+          <label class="form-label">Company</label>
+          <select class="form-select mb-3" required>
             <option selected disabled value="">Choose company</option>
             <option>option1</option>
           </select>
           <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
-        <h2>or if you have already submitted</h2>
+        <h2>or if you have <span class="text-primary">already submitted then</span></h2>
         <form id="companySelectForm">
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
             <label for="floatingInput">User ID</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">Company ID</label>
           </div>
           <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
@@ -109,7 +113,7 @@
       </section>
       <hr class="m-0">
       <!-- Submit form-->
-      <section class="resume-section" id="submit">
+      <section class="resume-section" id="employeeSubmit">
         <div class="resume-section-content">
           <h1 class="mb-0">
             Submit

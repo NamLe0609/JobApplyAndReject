@@ -44,49 +44,15 @@
           <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#submit">Submit</a>
+          <a class="nav-link js-scroll-trigger" href="#employerSubmit">Submit</a>
         </li>
       </ul>
     </div>
   </nav>
   <!-- Page Content-->
   <div class="container-fluid p-0">
-    <!--Welcome Page-->
-    <section id="welcomePage" class="resume-section">
-      <div class="resume-section-content">
-        <h1 class="mb-3">Are you an:</h1>
-        <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
-        <button id="employerPageBtn" type="button" class="btn btn-primary btn-lg">Employer</button>
-      </div>
-    </section>
-
-    <!--Select Company Page-->
-    <section id="companySelectPage" class="resume-section" hidden>
-      <div class="resume-section-content">
-        <h1 class="mb-3">Choose a company
-          <span class="text-primary">you want to apply to</span>
-        </h1>
-        <form id="companySelectForm">
-          <label for="validationDefault0" class="form-label">Company</label>
-          <select class="form-select mb-3" id="validationDefault0" required>
-            <option selected disabled value="">Choose company</option>
-            <option>option1</option>
-          </select>
-          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
-        </form>
-        <h2>or if you have already submitted</h2>
-        <form id="companySelectForm">
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">User ID</label>
-          </div>
-          <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
-        </form>
-      </div>
-    </section>
-
     <!--Main Company Page-->
-    <div id="employeeContent" hidden>
+    <div id="employerContent">
       <!-- About-->
       <section class="resume-section" id="about">
         <div class="resume-section-content">
@@ -194,24 +160,30 @@
       </section>
       <hr class="m-0">
       <!-- Submit form-->
-      <section class="resume-section" id="submit">
+      <section class="resume-section" id="employerSubmit">
         <div class="resume-section-content">
           <h1 class="mb-0">
             Submit
             <span class="text-primary">Form</span>
           </h1>
-          <form id="submitForm">
+          <form id="submitEmployerForm">
             <div class="row">
               <div class="col">
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="formFirstname" placeholder="firstname" required>
-                  <label for="floatingInput">First Name</label>
+                  <label for="floatingInput">Company name</label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="formLastname" placeholder="lastname" required>
-                  <label>Last Name</label>
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
+                    <option selected disabled value="">Choose company type</option>
+                    <option value="1">Ltd</option>
+                    <option value="2">PLC</option>
+                    <option value="3">LLP</option>
+                    <option value="4">Other</option>
+                  </select>
+                  <label for="floatingSelect">Company Type</label>
                 </div>
               </div>
             </div>
@@ -231,52 +203,18 @@
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">#</span>
-              <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number"
+              <input type="text" class="form-control" placeholder="Company contact number" aria-label="Company contact number"
                 aria-describedby="basic-addon1" required>
             </div>
-            <div class="row mb-3">
-              <div class="col-auto mb-1">
-                <input id="uni0" type="text" class="form-control" placeholder="University" aria-label="University"
-                  required>
-              </div>
-              <div class="col-auto mb-1">
-                <input id="degree0" type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree"
-                  required>
-              </div>
-              <div class="col-auto mb-1">
-                <input id="durationEdu0" type="text" class="form-control" placeholder="Duration" aria-label="Duration"
-                  required>
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
-              </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
+              <label for="floatingTextarea">Short description of the company:</label>
             </div>
-            <div id="jobForm" class="row mb-3">
-              <div class="col-auto mb-1">
-                <input id="job0" type="text" class="form-control" placeholder="Job title" aria-label="Job title"
-                  required>
-              </div>
-              <div class="col-auto mb-1">
-                <input id="company0" type="text" class="form-control" placeholder="Company title"
-                  aria-label="Company title" required>
-              </div>
-              <div class="col-auto mb-1">
-                <input id="durationJob0" type="text" class="form-control" placeholder="Duration" aria-label="Duration"
-                  required>
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-job">+</button>
-              </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
+              <label for="floatingTextarea">The company is looking for:</label>
             </div>
-            <div id="skillForm" class="row mb-3">
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-skills">+</button>
-              </div>
-              <div class="col-auto mb-1">
-                <input id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill" required>
-              </div>
-            </div>
-            <button id="submitFormBtn" class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitEmployerFormBtn" class="btn btn-primary" type="submit">Submit form</button>
           </form>
         </div>
       </section>
