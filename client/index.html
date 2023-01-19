@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Resume - Start Bootstrap Theme</title>
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <title>Apply and Reject</title>
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
@@ -18,10 +17,8 @@
 </head>
 
 <body id="page-top">
-  <!--Select employee or company page-->
-  <!-- EMPLOYEE SECTION-->
   <!-- Navigation for User page-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+  <nav class="sideNav navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideEmployeeNav" hidden>
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Send CV</span>
     </a>
@@ -32,13 +29,40 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul id="userNavbar" class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          <a class="nav-link js-scroll-trigger" href="#aboutEmployee">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#requirement">Requirement</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#employeeSubmit">Submit</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Navigation for employer page-->
+  <nav class="sideNav navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideEmployerNav" hidden>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Send CV</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul id="userNavbar" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#aboutEmployer">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
         </li>
       </ul>
     </div>
@@ -55,7 +79,7 @@
     </section>
 
     <!--Select Company Page-->
-    <section id="companySelectPage" class="resume-section">
+    <section id="companySelectPage" class="resume-section" hidden>
       <div class="resume-section-content">
         <h1 class="mb-3">Choose a company
           <span class="text-primary">you want to apply to</span>
@@ -83,10 +107,79 @@
       </div>
     </section>
 
+    <!--Select Company "Login" Page-->
+    <section id="companyLoginPage" class="resume-section" hidden>
+      <div class="resume-section-content">
+        <h1 class="mb-3">Register your
+          <span class="text-primary">company</span>
+        </h1>
+        <form id="submitEmployerForm">
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="formFirstname" placeholder="firstname" required>
+                <label for="floatingInput">Company name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
+                  <option selected disabled value="">Choose company type</option>
+                  <option value="1">Ltd</option>
+                  <option value="2">PLC</option>
+                  <option value="3">LLP</option>
+                  <option value="4">Other</option>
+                </select>
+                <label for="floatingSelect">Company Type</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <label for="floatingInput">Email address</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="formCountry" placeholder="country" required>
+                <label for="floatingInput">County of Origin</label>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">#</span>
+            <input type="text" class="form-control" placeholder="Company contact number"
+              aria-label="Company contact number" aria-describedby="basic-addon1" required>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
+            <label for="floatingTextarea">Short description of the company:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
+            <label for="floatingTextarea">The company is looking for:</label>
+          </div>
+          <button id="submitEmployerFormBtn" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <h2>If you already
+          <span class="text-primary">registered a company</span>
+        </h2>
+        <form id="companyLoginForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">Company ID</label>
+          </div>
+          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
     <!--Main User Page-->
-    <div id="employeeContent">
+    <div id="employeeContent" hidden>
       <!-- About-->
-      <section class="resume-section" id="about">
+      <section class="resume-section" id="aboutEmployee">
         <div class="resume-section-content">
           <h1 class="mb-0">
             [COMPANY]
@@ -197,6 +290,128 @@
             </div>
             <button id="submitEmployeeFormBtn" class="btn btn-primary" type="submit">Submit form</button>
           </form>
+        </div>
+      </section>
+      <hr class="m-0">
+    </div>
+    <!--Search For Employee-->
+    <div id="employerContent" hidden>
+      <section class="resume-section" id="searchForEmployee">
+        <div class="resume-section-content">
+          <h1 class="mb-0">
+            Search for
+            <span class="text-primary">employees</span>
+          </h1>
+          <label class="form-label">Pick a CV</label>
+          <select class="form-select mb-3" required>
+            <option selected disabled value="">Choose here</option>
+            <option>[NAME]</option>
+          </select>
+        </div>
+      </section>
+      <!-- About-->
+      <section class="resume-section" id="aboutEmployer">
+        <div class="resume-section-content">
+          <h1 class="mb-0">
+            [FIRSTNAME]
+            <span class="text-primary">[LASTNAME]</span>
+          </h1>
+          <div class="subheading mb-5">
+            [COUNTRY OF ORIGIN] · [PHONE NO] · [NAME@EMAIL.COM]
+          </div>
+        </div>
+      </section>
+      <hr class="m-0">
+      <!-- Experience-->
+      <section class="resume-section" id="experience">
+        <div class="resume-section-content">
+          <h2 class="mb-5">Experience</h2>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[JOB TITLE]</h3>
+              <div class="subheading mb-3">[COMPANY]</div>
+            </div>
+            <div class="flex-shrink-0">
+              <span class="text-primary">[DURATION]</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[JOB TITLE]</h3>
+              <div class="subheading mb-3">[COMPANY]</div>
+            </div>
+            <div class="flex-shrink-0">
+              <span class="text-primary">[DURATION]</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[JOB TITLE]</h3>
+              <div class="subheading mb-3">[COMPANY]</div>
+            </div>
+            <div class="flex-shrink-0">
+              <span class="text-primary">[DURATION]</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[JOB TITLE]</h3>
+              <div class="subheading mb-3">[COMPANY]</div>
+            </div>
+            <div class="flex-shrink-0">
+              <span class="text-primary">[DURATION]</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="m-0">
+      <!-- Education-->
+      <section class="resume-section" id="education">
+        <div class="resume-section-content">
+          <h2 class="mb-5">Education</h2>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[UNIVERSITY]</h3>
+              <div class="subheading mb-3">[DEGREE]</div>
+              <p>[GRADE]</p>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[UNIVERSITY]</h3>
+              <div class="subheading mb-3">[DEGREE]</div>
+              <p>[GRADE]</p>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+              <h3 class="mb-0">[UNIVERSITY]</h3>
+              <div class="subheading mb-3">[DEGREE]</div>
+              <p>[GRADE]</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="m-0">
+      <!-- Skills-->
+      <section class="resume-section" id="skills">
+        <div class="resume-section-content">
+          <h2 class="mb-5">Skills</h2>
+          <div class="subheading mb-3">Programming Languages & Tools</div>
+          <ul class="fa-ul mb-0">
+            <li>
+              <span class="fa-li"><i class="fas fa-check"></i></span>
+              [TOOL]
+            </li>
+            <li>
+              <span class="fa-li"><i class="fas fa-check"></i></span>
+              [TOOL]
+            </li>
+            <li>
+              <span class="fa-li"><i class="fas fa-check"></i></span>
+              [TOOL]
+            </li>
+          </ul>
         </div>
       </section>
       <hr class="m-0">

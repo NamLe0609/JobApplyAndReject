@@ -7,15 +7,13 @@
 // Scripts
 //
 window.addEventListener("DOMContentLoaded", (event) => {
-
   // Activate Bootstrap scrollspy on the main nav element
-  let sideNavBar = document.body.querySelector("#sideNav");
-  if (sideNavBar) {
+  /* if (sideEmployerNav) {
     new bootstrap.ScrollSpy(document.body, {
-      target: "#sideNav",
+      target: "#sideEmployerNav",
       offset: 74,
     });
-  }
+  } */
 
   // Collapse responsive navbar when toggler is visible
   const navbarToggler = document.body.querySelector(".navbar-toggler");
@@ -34,8 +32,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 // Starting from here is not from template
 let welcomePage = document.getElementById("welcomePage");
 let companySelectPage = document.getElementById("companySelectPage");
+let companyLoginPage = document.getElementById("companyLoginPage");
 let employeeContent = document.getElementById("employeeContent");
-let sideNav = document.getElementById("sideNav");
+let employerContent = document.getElementById("employerContent");
+let sideEmployeeNav = document.getElementById("sideEmployeeNav");
+let sideEmployerNav = document.body.querySelector("#sideEmployerNav");
 //Load employee version of page
 
 //Load company choose
@@ -46,19 +47,46 @@ employeePageBtn.addEventListener("click", (event) => {
   companySelectPage.removeAttribute("hidden");
 });
 
+let employerPageBtn = document.getElementById("employerPageBtn");
+employerPageBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  welcomePage.setAttribute("hidden", "");
+  companyLoginPage.removeAttribute("hidden");
+});
+
 //Load main employee view
-//Code from: https://tom-select.js.org/examples/validation/?
 let companySelectForm = document.getElementById("companySelectForm");
-companySelectForm.addEventListener("submit", (event) => {
-  companySelectForm.classList.add("was-validated");
-  if (companySelectForm.checkValidity()) {
+companySelectForm.addEventListener(
+  "submit",
+  (event) => {
     event.preventDefault();
     event.stopPropagation();
     companySelectPage.setAttribute("hidden", "");
-    sideNav.removeAttribute("hidden");
+    sideEmployeeNav.removeAttribute("hidden");
     employeeContent.removeAttribute("hidden");
-  }
-}, false);
+    if (sideEmployeeNav) {
+      new bootstrap.ScrollSpy(document.body, {
+        target: "#sideEmployeeNav",
+        offset: 74,
+      });
+    }
+  },
+  false
+);
+
+//Load main employer view
+let companyLoginForm = document.getElementById("companyLoginForm");
+companyLoginForm.addEventListener(
+  "submit",
+  (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    companyLoginPage.setAttribute("hidden", "");
+    sideEmployerNav.removeAttribute("hidden");
+    employerContent.removeAttribute("hidden");
+  },
+  false
+);
 
 //Idea for template literals to add html from:
 //https://stackoverflow.com/questions/16270761/how-to-insert-a-large-block-of-html-in-javascript
@@ -71,7 +99,9 @@ let counterSkill = 1;
 addSkillBtn.addEventListener("click", (event) => {
   if (counterSkill < 3) {
     event.preventDefault();
-    let submitEmployeeFormBtn = document.getElementById("submitEmployeeFormBtn");
+    let submitEmployeeFormBtn = document.getElementById(
+      "submitEmployeeFormBtn"
+    );
     let div = document.createElement("div");
     div.setAttribute("class", "row mb-3");
     div.innerHTML = `
