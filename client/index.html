@@ -22,12 +22,12 @@
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Send CV</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive0"
+      aria-controls="navbarResponsive0" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul id="userNavbar" class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarResponsive0">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#aboutEmployee">About</a>
         </li>
@@ -46,12 +46,12 @@
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Send CV</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive1"
+      aria-controls="navbarResponsive1" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul id="userNavbar" class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarResponsive1">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#aboutEmployer">About</a>
         </li>
@@ -86,92 +86,95 @@
         </h1>
         <form id="companySelectForm">
           <label class="form-label">Company</label>
-          <select class="form-select mb-3" required>
+          <select id="chooseCompanySelect" class="form-select mb-3" required>
             <option selected disabled value="">Choose company</option>
             <option>option1</option>
           </select>
           <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
         <h2>or if you have <span class="text-primary">already submitted then</span></h2>
-        <form id="companySelectForm">
+        <form id="applicationCheckForm">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">User ID</label>
+            <input type="text" class="form-control" id="selectompanyFormUserEmail" placeholder="name@example.com"
+              required>
+            <label for="selectompanyFormUserEmail">User Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Company ID</label>
+            <input type="text" class="form-control" id="selectCompanyFormCompanyID" placeholder="name@example.com"
+              required>
+            <label for="selectCompanyFormCompanyID">Company ID</label>
           </div>
           <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     </section>
 
-    <!--Select Company "Login" Page-->
-    <section id="companyLoginPage" class="resume-section" hidden>
+    <!--Company Register/"Login" Page-->
+    <section id="companyRegisterLoginPage" class="resume-section" hidden>
       <div class="resume-section-content">
         <h1 class="mb-3">Register your
           <span class="text-primary">company</span>
         </h1>
-        <form id="submitEmployerForm">
+        <form id="registerCompanyForm">
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="formFirstname" placeholder="firstname" required>
-                <label for="floatingInput">Company name</label>
+                <input name="Company name" type="text" class="form-control" id="registerFormName" placeholder="firstname" required>
+                <label for="registerFormName">Company name</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
+                <select name="Company type" class="form-select" id="registerFormCompanyType" aria-label="Floating label select example"
+                  required>
                   <option selected disabled value="">Choose company type</option>
-                  <option value="1">Ltd</option>
-                  <option value="2">PLC</option>
-                  <option value="3">LLP</option>
-                  <option value="4">Other</option>
+                  <option value="Ltd">Ltd</option>
+                  <option value="PLC">PLC</option>
+                  <option value="LLP">LLP</option>
+                  <option value="Other">Other</option>
                 </select>
-                <label for="floatingSelect">Company Type</label>
+                <label for="registerFormCompanyType">Company Type</label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-                <label for="floatingInput">Email address</label>
+                <input name="Email Address" type="email" class="form-control" id="registerFormEmail" placeholder="name@example.com" required>
+                <label for="registerFormEmail">Email address</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="formCountry" placeholder="country" required>
-                <label for="floatingInput">County of Origin</label>
+                <input name="Country of Origin" type="text" class="form-control" id="registerFormCountry" placeholder="country" required>
+                <label for="registerFormCountry">County of Origin</label>
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">#</span>
-            <input type="text" class="form-control" placeholder="Company contact number"
-              aria-label="Company contact number" aria-describedby="basic-addon1" required>
+            <span class="input-group-text">#</span>
+            <input name="Company contact number" type="text" class="form-control" placeholder="Company contact number"
+              aria-label="Company contact number" required>
           </div>
           <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
-            <label for="floatingTextarea">Short description of the company:</label>
+            <textarea name="Description" class="form-control" placeholder="Leave a comment here" id="registerFormDescription"></textarea>
+            <label for="registerFormDescription">Short description of the company:</label>
           </div>
           <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id=""></textarea>
-            <label for="floatingTextarea">The company is looking for:</label>
+            <textarea name="Looking For" class="form-control" placeholder="Leave a comment here" id="registerFormLookingFor"></textarea>
+            <label for="registerFormLookingFor">The company is looking for:</label>
           </div>
-          <button id="submitEmployerFormBtn" class="btn btn-primary" type="submit">Submit</button>
+          <button id="registerCompanyFormBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
         <h2>If you already
           <span class="text-primary">registered a company</span>
         </h2>
         <form id="companyLoginForm">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Company ID</label>
+            <input type="text" class="form-control" id="companyLoginID" placeholder="name@example.com" required>
+            <label for="companyLoginID">Company ID</label>
           </div>
-          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
+          <button id="companyLoginBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     </section>
@@ -181,14 +184,16 @@
       <!-- About-->
       <section class="resume-section" id="aboutEmployee">
         <div class="resume-section-content">
-          <h1 class="mb-0">
+          <h1 class="mb-0" id="companyNameField">
             [COMPANY]
-            <span class="text-primary">[LTD/PLC]</span>
+            <span class="text-primary" id="companyTypeField">[LTD/PLC]</span>
           </h1>
           <div class="subheading mb-5">
-            [LOCATION] · [CONTACT] · [NAME@EMAIL.COM]
+            <span id="companyLocationField">[LOCATION]</span>
+            · <span id="companyContactNoField">[CONTACT]</span>
+            · <span id="companyEmailField">[NAME@EMAIL.COM]</span>
           </div>
-          <p class="lead mb-5">
+          <p class="lead mb-5" id="companyDescriptionField">
             DESCRIPTION ABOUT COMPANY
           </p>
         </div>
@@ -197,12 +202,13 @@
       <!-- Requirement-->
       <section class="resume-section" id="requirement">
         <div class="resume-section-content">
-          <h2 class="mb-5">LOOKING <span class="text-primary">FOR</span></h2>
+          <h2 class="mb-5">COMPANY <span class="text-primary">DEMAND</span></h2>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <p class="lead mb-5">
+            <p class="lead mb-5" id="companyLookingForField">
               DESCRIPTION OF NEEDED TALENTS
             </p>
           </div>
+        </div>
       </section>
       <hr class="m-0">
       <!-- Submit form-->
@@ -216,35 +222,35 @@
             <div class="row">
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="formFirstname" placeholder="firstname" required>
-                  <label for="floatingInput">First Name</label>
+                  <input type="text" class="form-control" id="applyFormFirstname" placeholder="firstname" required>
+                  <label for="applyFormFirstname">First Name</label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="formLastname" placeholder="lastname" required>
-                  <label>Last Name</label>
+                  <input type="text" class="form-control" id="applyFormLastname" placeholder="lastname" required>
+                  <label for="applyFormLastname">Last Name</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-                  <label for="floatingInput">Email address</label>
+                  <input type="email" class="form-control" id="applyFormEmailUser" placeholder="name@example.com"
+                    required>
+                  <label for="applyFormEmailUser">Email address</label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="formCountry" placeholder="country" required>
-                  <label for="floatingInput">County of Origin</label>
+                  <input type="text" class="form-control" id="applyFormCountryUser" placeholder="country" required>
+                  <label for="applyFormCountryUser">County of Origin</label>
                 </div>
               </div>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">#</span>
-              <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number"
-                aria-describedby="basic-addon1" required>
+              <span class="input-group-text">#</span>
+              <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
             </div>
             <div class="row mb-3">
               <div class="col-auto mb-1">
@@ -256,8 +262,7 @@
                   required>
               </div>
               <div class="col-auto mb-1">
-                <input id="durationEdu0" type="text" class="form-control" placeholder="Duration" aria-label="Duration"
-                  required>
+                <input id="gradeEdu0" type="text" class="form-control" placeholder="Grade" aria-label="Grade" required>
               </div>
               <div class="col-auto">
                 <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
@@ -294,8 +299,10 @@
       </section>
       <hr class="m-0">
     </div>
-    <!--Search For Employee-->
+
+    <!--Main Employer Page-->
     <div id="employerContent" hidden>
+      <!--Search For Employee-->
       <section class="resume-section" id="searchForEmployee">
         <div class="resume-section-content">
           <h1 class="mb-0">
@@ -303,7 +310,7 @@
             <span class="text-primary">employees</span>
           </h1>
           <label class="form-label">Pick a CV</label>
-          <select class="form-select mb-3" required>
+          <select id="chooseEmployeeSelect" class="form-select mb-3" required>
             <option selected disabled value="">Choose here</option>
             <option>[NAME]</option>
           </select>
@@ -312,12 +319,14 @@
       <!-- About-->
       <section class="resume-section" id="aboutEmployer">
         <div class="resume-section-content">
-          <h1 class="mb-0">
+          <h1 id="employeeFirstNameField" class="mb-0">
             [FIRSTNAME]
-            <span class="text-primary">[LASTNAME]</span>
+            <span id="employeeLastNameField" class="text-primary">[LASTNAME]</span>
           </h1>
           <div class="subheading mb-5">
-            [COUNTRY OF ORIGIN] · [PHONE NO] · [NAME@EMAIL.COM]
+            <span id="employeeCountryField">[COUNTRY OF ORIGIN]</span>
+            · <span id="employeePhoneNoField">[PHONE NO]</span>
+            · <span id="employeeEmailField">[NAME@EMAIL.COM]</span>
           </div>
         </div>
       </section>
@@ -328,38 +337,29 @@
           <h2 class="mb-5">Experience</h2>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
+              <h3 class="mb-0" id="jobTitleField0">[JOB TITLE]</h3>
+              <div id="jobCompanyField0" class="subheading mb-3">[COMPANY]</div>
             </div>
             <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
+              <span id="jobDurationField0" class="text-primary">[DURATION]</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
+              <h3 id="jobTitleField1" class="mb-0">[JOB TITLE]</h3>
+              <div id="jobCompanyField1" class="subheading mb-3">[COMPANY]</div>
             </div>
             <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
+              <span id="jobDurationField1" class="text-primary">[DURATION]</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
+              <h3 id="jobTitleField2" class="mb-0">[JOB TITLE]</h3>
+              <div id="jobCompanyField2" class="subheading mb-3">[COMPANY]</div>
             </div>
             <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0">[JOB TITLE]</h3>
-              <div class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span class="text-primary">[DURATION]</span>
+              <span id="jobDurationField2" class="text-primary">[DURATION]</span>
             </div>
           </div>
         </div>
@@ -371,23 +371,23 @@
           <h2 class="mb-5">Education</h2>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[UNIVERSITY]</h3>
-              <div class="subheading mb-3">[DEGREE]</div>
-              <p>[GRADE]</p>
+              <h3 id="eduUniField0" class="mb-0">[UNIVERSITY]</h3>
+              <div id="eduDegreeField0" class="subheading mb-3">[DEGREE]</div>
+              <p id="eduGradeField0">[GRADE]</p>
             </div>
           </div>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[UNIVERSITY]</h3>
-              <div class="subheading mb-3">[DEGREE]</div>
-              <p>[GRADE]</p>
+              <h3 id="eduUniField1" class="mb-0">[UNIVERSITY]</h3>
+              <div id="eduDegreeField1" class="subheading mb-3">[DEGREE]</div>
+              <p id="eduGradeField1">[GRADE]</p>
             </div>
           </div>
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">
-              <h3 class="mb-0">[UNIVERSITY]</h3>
-              <div class="subheading mb-3">[DEGREE]</div>
-              <p>[GRADE]</p>
+              <h3 id="eduUniField2" class="mb-0">[UNIVERSITY]</h3>
+              <div id="eduDegreeField2" class="subheading mb-3">[DEGREE]</div>
+              <p id="eduGradeField2">[GRADE]</p>
             </div>
           </div>
         </div>
@@ -397,19 +397,18 @@
       <section class="resume-section" id="skills">
         <div class="resume-section-content">
           <h2 class="mb-5">Skills</h2>
-          <div class="subheading mb-3">Programming Languages & Tools</div>
           <ul class="fa-ul mb-0">
             <li>
               <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
+              <h4 id="skillField0">[TOOL]</h4>
             </li>
             <li>
               <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
+              <h4 id="skillField1">[TOOL]</h4>
             </li>
             <li>
               <span class="fa-li"><i class="fas fa-check"></i></span>
-              [TOOL]
+              <h4 id="skillField2">[TOOL]</h4>
             </li>
           </ul>
         </div>
