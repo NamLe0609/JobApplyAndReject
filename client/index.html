@@ -14,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css">
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="shortcut icon" href="#">
 </head>
 
 <body id="page-top">
@@ -41,7 +42,7 @@
     </div>
   </nav>
 
-  <!-- Navigation for employer page-->
+  <!-- Navigation for Employer page-->
   <nav class="sideNav navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideEmployerNav" hidden>
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Send CV</span>
@@ -52,6 +53,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive1">
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#searchForEmployee">Applicants</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#aboutEmployer">About</a>
         </li>
@@ -86,7 +90,7 @@
         </h1>
         <form id="companySelectForm">
           <label class="form-label">Company</label>
-          <select id="chooseCompanySelect" class="form-select mb-3" required>
+          <select id="chooseCompanySelect" size="4" class="form-select mb-3" required>
             <option selected disabled value="">Choose company</option>
           </select>
           <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
@@ -293,7 +297,8 @@
                 <input name="skill0" id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill" required>
               </div>
             </div>
-            <button id="submitEmployeeFormBtn" class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitEmployeeFormBtn" class="btn btn-primary mb-3" type="submit">Submit form</button>
+            <div id="applyToCompanySubmitResponse"></div>
           </form>
         </div>
       </section>
@@ -310,9 +315,8 @@
             <span class="text-primary">employees</span>
           </h1>
           <label class="form-label">Pick a CV</label>
-          <select id="chooseEmployeeSelect" class="form-select mb-3" required>
-            <option selected disabled value="">Choose here</option>
-            <option>[NAME]</option>
+          <select id="chooseEmployeeSelect" size="3" class="form-select mb-3" required>
+            <option selected disabled value="">Choose applicants</option>
           </select>
         </div>
       </section>

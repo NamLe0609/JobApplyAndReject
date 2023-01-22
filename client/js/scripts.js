@@ -101,16 +101,25 @@ const companyEmailField = document.getElementById('companyEmailField');
 const registerCompanySubmitResponse = document.getElementById(
   'registerCompanySubmitResponse'
 );
+const applyToCompanySubmitResponse = document.getElementById(
+  'applyToCompanySubmitResponse'
+);
 
 // Description
-const companyDescriptionField = document.getElementById('companyDescriptionField');
+const companyDescriptionField = document.getElementById(
+  'companyDescriptionField'
+);
 
 // Looking for
-const companyLookingForField = document.getElementById('companyLookingForField');
+const companyLookingForField = document.getElementById(
+  'companyLookingForField'
+);
 
 //
 // Load both version of page (and forms)
 //
+
+const chooseEmployeeSelect = document.getElementById('chooseEmployeeSelect');
 
 // Load company choose
 const employeePageBtn = document.getElementById('employeePageBtn');
@@ -159,6 +168,7 @@ async function loadEmployeePage (companyID) {
   companyLookingForField.innerText = companyDetail.lookingFor;
 }
 
+let currentCompanyID;
 // Load main employee view (Company Select Form)
 const companySelectForm = document.getElementById('companySelectForm');
 const chooseCompanySelect = document.getElementById('chooseCompanySelect');
@@ -166,6 +176,7 @@ companySelectForm.addEventListener('submit', (event) => {
   event.preventDefault();
   event.stopPropagation();
   loadEmployeePage(chooseCompanySelect.value);
+  currentCompanyID = chooseCompanySelect.value;
   sideEmployeeNav.removeAttribute('hidden');
   employeeContent.removeAttribute('hidden');
   companySelectPage.setAttribute('hidden', '');
@@ -176,22 +187,28 @@ async function applyToCompany () {
   const submitEmployeeForm = document.getElementById('submitEmployeeForm');
   submitEmployeeForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     const data = new FormData(submitEmployeeForm);
     const dataJSON = JSON.stringify(Object.fromEntries(data));
-    const response = await fetch(endpointRoot + 'company/new', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: dataJSON
-    });
-    registerCompanySubmitResponse.innerHTML = `
+    console.log(dataJSON);
+    const response = await fetch(
+      endpointRoot + `company/apply/${currentCompanyID}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: dataJSON
+      }
+    );
+    applyToCompanySubmitResponse.innerHTML = `
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Form has been submitted! Your Company ID is: ${await response.text()} </strong> You can now check if you have gotten any applications by inputting your Company ID below
+      <strong>Form has been submitted! Your Application ID is: ${await response.text()} </strong>
+      You can now check if your application was successfull by inputting your ApplicationID and Company ID in the page before this
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     `;
-    registerCompanyForm.reset();
+    submitEmployeeForm.reset();
   });
 }
 
@@ -218,14 +235,81 @@ async function registerCompany () {
     registerCompanyForm.reset();
   });
 }
+
+// Helper function to load employer page's select by getting company's list of applications
+async function loadEmployerPageSelect (companyID) {
+  const applicantDetailsResponse = await fetch(
+    endpointRoot + `company/${companyID}/applicantNameAndID`
+  );
+  const applicantNameAndID = JSON.parse(await applicantDetailsResponse.text());
+  console.log(applicantNameAndID);
+  for (const item of applicantNameAndID) {
+    const option = document.createElement('option');
+    option.text = item.applicantName;
+    option.value = item.id;
+    chooseEmployeeSelect.appendChild(option);
+  }
+  currentCompanyID = companyID;
+}
+
 // Load main employer view (Employer "Login" Form)
 const companyLoginForm = document.getElementById('companyLoginForm');
 companyLoginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   event.stopPropagation();
+  const companyLoginID = document.getElementById('companyLoginID');
+  loadEmployerPageSelect(companyLoginID.value);
   companyRegisterLoginPage.setAttribute('hidden', '');
   sideEmployerNav.removeAttribute('hidden');
   employerContent.removeAttribute('hidden');
+});
+
+// Helper function to load employer page with applicant detail chosen by select
+async function loadEmployerPage (applicantID) {
+  const applicantDetailsResponse = await fetch(
+    endpointRoot + `company/${currentCompanyID}/${chooseEmployeeSelect.value}`
+  );
+  const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
+  employeeFirstName.innerText = applicantDetails.firstName;
+  employeeLastName.innerText = applicantDetails.lastName;
+  employeeFirstName.innerText = applicantDetails.firstName;
+  employeeLastName.innerText = applicantDetails.lastName;
+  employeeCountry.innerText = applicantDetails.countryOfOrigin;
+  employeePhoneNo.innerText = applicantDetails.phoneNumber;
+  employeeEmail.innerText = applicantDetails.emailAddress;
+  for (let i = 0; i <= 2; i++) {
+    if (`job${i}` in applicantDetails) {
+      window[`jobTitleField${i}`].innerText = applicantDetails[`job${i}`];
+      window[`jobCompanyField${i}`].innerText = applicantDetails[`company${i}`];
+      window[`jobDurationField${i}`].innerText = applicantDetails[`durationJob${i}`];
+    } else {
+      window[`jobTitleField${i}`].innerText = '';
+      window[`jobCompanyField${i}`].innerText = '';
+      window[`jobDurationField${i}`].innerText = '';
+    }
+
+    if (`uni${i}` in applicantDetails) {
+      window[`eduUniField${i}`].innerText = applicantDetails[`uni${i}`];
+      window[`eduDegreeField${i}`].innerText = applicantDetails[`degree${i}`];
+      window[`eduGradeField${i}`].innerText = 'GRADE: ' + applicantDetails[`gradeEdu${i}`];
+    } else {
+      window[`eduUniField${i}`].innerText = '';
+      window[`eduDegreeField${i}`].innerText = '';
+      window[`eduGradeField${i}`].innerText = '';
+    }
+
+    if (`skill${i}` in applicantDetails) {
+      window[`skillField${i}`].innerText = applicantDetails[`skill${i}`];
+    } else {
+      window[`skillField${i}`].innerText = '';
+    }
+  }
+}
+
+chooseEmployeeSelect.addEventListener('change', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  loadEmployerPage(chooseEmployeeSelect.value);
 });
 
 // Idea for template literals to add html from:
@@ -282,7 +366,7 @@ addEduBtn.addEventListener('click', (event) => {
       <input name="uni${counterEducation}" id="uni${counterEducation}" type="text" class="form-control" placeholder="University" aria-label="University" required>
     </div>
     <div class="col-auto mb-1">
-      <input name="degree${counterEducation} id="degree${counterEducation}" type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree" required>
+      <input name="degree${counterEducation}" id="degree${counterEducation}" type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree" required>
     </div>
     <div class="col-auto mb-1">
       <input name="gradeEdu${counterEducation}" id="gradeEdu${counterEducation}" type="text" class="form-control" placeholder="Grade" aria-label="Grade" required>
@@ -346,3 +430,4 @@ function addDeleteToBtnJob (id) {
 
 document.addEventListener('DOMContentLoaded', getCompanyNameAndID);
 document.addEventListener('DOMContentLoaded', registerCompany);
+document.addEventListener('DOMContentLoaded', applyToCompany);

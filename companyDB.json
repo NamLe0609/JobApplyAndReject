@@ -1,64 +1,99 @@
 {
-  "companies": {
-    "4c09eab3-954a-41aa-90e3-261002df0ee1": {
-      "name": "Acme Inc.",
-      "type": "Ltd",
-      "emailAddress": "info@acmeinc.com",
-      "countryOfOrigin": "United States",
-      "contactNumber": "5555555555",
-      "description": "Acme Inc. is a leading manufacturer of widgets and other specialized products.",
-      "lookingFor": "We are looking for experienced engineers and sales professionals with strong technical and customer service skills.",
-      "applicants": []
-    },
-    "8670b29b-6fb4-47af-97ae-a88acf0fcac7": {
-      "name": "Beta Corp.",
-      "type": "PLC",
-      "emailAddress": "jobs@betacorp.com",
-      "countryOfOrigin": "United Kingdom",
-      "contactNumber": "4444444444",
-      "description": "Beta Corp. is a global technology company that designs and develops innovative software solutions.",
-      "lookingFor": "We are seeking talented software developers and project managers with experience in Agile development methodologies.",
-      "applicants": []
-    },
-    "3a25d026-0231-458d-a2a4-8681f1ba6efc": {
-      "name": "Gamma Enterprises",
-      "type": "LLP",
-      "emailAddress": "careers@gammaenterprises.com",
-      "countryOfOrigin": "India",
-      "contactNumber": "3333333333",
-      "description": "Gamma Enterprises is a leading provider of consulting services for businesses in the manufacturing industry.",
-      "lookingFor": "We are looking for consultants with experience in lean manufacturing and Six Sigma methodology.",
-      "applicants": []
-    },
-    "7308505f-7dca-4a68-bc27-dfd42d73f539": {
-      "name": "Delta Solutions",
-      "type": "Other",
-      "emailAddress": "hr@deltasolutions.com",
-      "countryOfOrigin": "Canada",
-      "contactNumber": "2222222222",
-      "description": "Delta Solutions is a leading provider of IT consulting and managed services.",
-      "lookingFor": "We are seeking experienced IT professionals with expertise in cloud computing and network security.",
-      "applicants": []
-    },
-    "a8349e11-b94c-49d2-8dcd-7565f0b185b1": {
-      "name": "Epsilon Industries",
-      "type": "Ltd",
-      "emailAddress": "recruiting@epsilonindustries.com",
-      "countryOfOrigin": "Germany",
-      "contactNumber": "1111111111",
-      "description": "Epsilon Industries is a leading manufacturer of industrial machinery and equipment.",
-      "lookingFor": "We are looking for skilled mechanical engineers and technicians with experience in robotics and automation.",
-      "applicants": []
-    },
-    "c5b891a3-24dc-42d1-a13c-69771f6ddf32": {
-      "name": "Bob's pizzaria",
-      "type": "Ltd",
-      "emailAddress": "Bobmakesgoodpizza@gmail.com",
-      "countryOfOrigin": "Italy",
-      "contactNumber": "01233321001",
-      "description": "We make the most average, slightly under seasoned, American inspired pizza",
-      "lookingFor": "We want employees who are extremely average at their job",
-      "applicants": []
+    "companies": {
+        "4c09eab3-954a-41aa-90e3-261002df0ee1": {
+            "name": "Acme Inc.",
+            "type": "Ltd",
+            "emailAddress": "info@acmeinc.com",
+            "countryOfOrigin": "United States",
+            "contactNumber": "5555555555",
+            "description": "Acme Inc. is a leading manufacturer of widgets and other specialized products.",
+            "lookingFor": "We are looking for experienced engineers and sales professionals with strong technical and customer service skills.",
+            "applicants": {}
+        },
+        "8670b29b-6fb4-47af-97ae-a88acf0fcac7": {
+            "name": "Beta Corp.",
+            "type": "PLC",
+            "emailAddress": "jobs@betacorp.com",
+            "countryOfOrigin": "United Kingdom",
+            "contactNumber": "4444444444",
+            "description": "Beta Corp. is a global technology company that designs and develops innovative software solutions.",
+            "lookingFor": "We are seeking talented software developers and project managers with experience in Agile development methodologies.",
+            "applicants": {}
+        },
+        "3a25d026-0231-458d-a2a4-8681f1ba6efc": {
+            "name": "Gamma Enterprises",
+            "type": "LLP",
+            "emailAddress": "careers@gammaenterprises.com",
+            "countryOfOrigin": "India",
+            "contactNumber": "3333333333",
+            "description": "Gamma Enterprises is a leading provider of consulting services for businesses in the manufacturing industry.",
+            "lookingFor": "We are looking for consultants with experience in lean manufacturing and Six Sigma methodology.",
+            "applicants": {}
+        },
+        "7308505f-7dca-4a68-bc27-dfd42d73f539": {
+            "name": "Delta Solutions",
+            "type": "Other",
+            "emailAddress": "hr@deltasolutions.com",
+            "countryOfOrigin": "Canada",
+            "contactNumber": "2222222222",
+            "description": "Delta Solutions is a leading provider of IT consulting and managed services.",
+            "lookingFor": "We are seeking experienced IT professionals with expertise in cloud computing and network security.",
+            "applicants": {}
+        },
+        "a8349e11-b94c-49d2-8dcd-7565f0b185b1": {
+            "name": "Epsilon Industries",
+            "type": "Ltd",
+            "emailAddress": "recruiting@epsilonindustries.com",
+            "countryOfOrigin": "Germany",
+            "contactNumber": "1111111111",
+            "description": "Epsilon Industries is a leading manufacturer of industrial machinery and equipment.",
+            "lookingFor": "We are looking for skilled mechanical engineers and technicians with experience in robotics and automation.",
+            "applicants": {}
+        },
+        "c5b891a3-24dc-42d1-a13c-69771f6ddf32": {
+            "name": "Bob's pizzaria",
+            "type": "Ltd",
+            "emailAddress": "Bobmakesgoodpizza@gmail.com",
+            "countryOfOrigin": "Italy",
+            "contactNumber": "01233321001",
+            "description": "We make the most average, slightly under seasoned, American inspired pizza",
+            "lookingFor": "We want employees who are extremely average at their job",
+            "applicants": {
+                "4c09eab3-954a-41aa-90e3-261002df0ee1": {
+                    "firstName": "John",
+                    "lastName": "Smith",
+                    "emailAddress": "john.smith@gmail.com",
+                    "countryOfOrigin": "United States",
+                    "phoneNumber": "555-555-5555",
+                    "uni0": "Harvard University",
+                    "degree0": "Computer Science",
+                    "gradeEdu0": "A",
+                    "job0": "Software Engineer",
+                    "company0": "Acme Inc.",
+                    "durationJob0": "2 years",
+                    "skill0": "JavaScript",
+                    "skill1": "React",
+                    "skill2": "Node.js",
+                    "applicationStatus": "Pending"
+                },
+                "8670b29b-6fb4-47af-97ae-a88acf0fcac7": {
+                    "firstName": "Jane",
+                    "lastName": "Doe",
+                    "emailAddress": "jane.doe@gmail.com",
+                    "countryOfOrigin": "Canada",
+                    "phoneNumber": "444-444-4444",
+                    "uni0": "University of Toronto",
+                    "degree0": "Electrical Engineering",
+                    "gradeEdu0": "A-",
+                    "job0": "Electrical Engineer",
+                    "company0": "Beta Corp.",
+                    "durationJob0": "1 year",
+                    "skill0": "C++",
+                    "skill1": "Python",
+                    "skill2": "MATLAB",
+                    "applicationStatus": "Pending"
+                }
+            }
+        }
     }
-  }
 }
