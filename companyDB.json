@@ -94,6 +94,34 @@
                     "applicationStatus": "Pending"
                 }
             }
+        },
+        "1a6577d6-f1a8-4a6d-8e1c-b255010c74f3": {
+            "name": "Dealers",
+            "type": "Other",
+            "emailAddress": "qwerty.321@gmail.com",
+            "countryOfOrigin": "Qatar",
+            "contactNumber": "123456789",
+            "description": "We boolin'",
+            "lookingFor": "Employees",
+            "applicants": {
+                "61ba597f-45b4-400b-8d50-050efc0f4f01": {
+                    "firstName": "Michal",
+                    "lastName": "Pluta",
+                    "emailAddress": "boolean@royalmail.tz",
+                    "countryOfOrigin": "The back streets",
+                    "phoneNumber": "1234567890",
+                    "uni0": "Doorham",
+                    "degree0": "Englishh",
+                    "gradeEdu0": "C++",
+                    "job0": "Apple Farmer",
+                    "company0": "Apel Ink",
+                    "durationJob0": "12 seconds",
+                    "skill0": "No skill",
+                    "skill1": "N/A",
+                    "skill2": "Lack of skill",
+                    "applicationStatus": "Pending"
+                }
+            }
         }
     }
 }

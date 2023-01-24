@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*!
  * Start Bootstrap - Resume v7.0.5 (https://startbootstrap.com/theme/resume)
  * Copyright 2013-2022 Start Bootstrap
@@ -182,6 +183,14 @@ companySelectForm.addEventListener('submit', (event) => {
   companySelectPage.setAttribute('hidden', '');
 });
 
+/* // Helper function to load employer page with applicant detail chosen by select
+async function loadEmployerPage (applicantID) {
+  const applicantDetailsResponse = await fetch(
+    endpointRoot + `company/${currentCompanyID}/${chooseEmployeeSelect.value}`
+  );
+  const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
+} */
+
 // Submit employee application form
 async function applyToCompany () {
   const submitEmployeeForm = document.getElementById('submitEmployeeForm');
@@ -340,15 +349,23 @@ addSkillBtn.addEventListener('click', (event) => {
     counterSkill++;
     submitEmployeeSection.insertBefore(div, submitEmployeeFormBtn);
     addDeleteToBtnSkill(`button-remove-skills${counterSkill - 1}`);
+    if (counterSkill === 3) {
+      const btn = document.getElementById(`button-remove-skills${counterSkill - 2}`);
+      btn.disabled = true;
+    }
   }
 });
 
 function addDeleteToBtnSkill (id) {
-  const btn = document.getElementById(id);
+  let btn = document.getElementById(id);
   btn.addEventListener('click', (event) => {
     event.preventDefault();
     counterSkill--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
+    if (counterSkill === 2) {
+      btn = document.getElementById(`button-remove-skills${counterSkill - 1}`);
+      btn.disabled = false;
+    }
   });
 }
 
@@ -378,15 +395,23 @@ addEduBtn.addEventListener('click', (event) => {
     counterEducation++;
     submitEmployeeSection.insertBefore(div, jobForm);
     addDeleteToBtnEdu(`button-remove-education${counterEducation - 1}`);
+    if (counterEducation === 3) {
+      const btn = document.getElementById(`button-remove-education${counterEducation - 2}`);
+      btn.disabled = true;
+    }
   }
 });
 
 function addDeleteToBtnEdu (id) {
-  const btn = document.getElementById(id);
+  let btn = document.getElementById(id);
   btn.addEventListener('click', (event) => {
     event.preventDefault();
     counterEducation--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
+    if (counterEducation === 2) {
+      btn = document.getElementById(`button-remove-education${counterEducation - 1}`);
+      btn.disabled = false;
+    }
   });
 }
 
@@ -416,15 +441,23 @@ addJobBtn.addEventListener('click', (event) => {
     counterJob++;
     submitEmployeeSection.insertBefore(div, skillForm);
     addDeleteToBtnJob(`button-remove-job${counterJob - 1}`);
+    if (counterJob === 3) {
+      const btn = document.getElementById(`button-remove-job${counterJob - 2}`);
+      btn.disabled = true;
+    }
   }
 });
 
 function addDeleteToBtnJob (id) {
-  const btn = document.getElementById(id);
+  let btn = document.getElementById(id);
   btn.addEventListener('click', (event) => {
     event.preventDefault();
     counterJob--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
+    if (counterJob === 2) {
+      btn = document.getElementById(`button-remove-job${counterJob - 1}`);
+      btn.disabled = false;
+    }
   });
 }
 

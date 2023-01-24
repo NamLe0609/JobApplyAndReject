@@ -55,7 +55,7 @@ app.get('/company/:companyID/:applicantID', (req, res) => {
 app.post('/company/new', (req, res) => {
   const key = uuidv4();
   const companyToAdd = req.body;
-  companyToAdd.applicants = [];
+  companyToAdd.applicants = {};
   companies.companies[key] = companyToAdd;
   fs.writeFileSync(fileNameForJSON, JSON.stringify(companies));
   res.send(key);
