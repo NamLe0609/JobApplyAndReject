@@ -38,6 +38,9 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#employeeSubmit">Submit</a>
         </li>
+        <li class="nav-item">
+          <a id="backLinkEmployee" href="" class="nav-link js-scroll-trigger">Back</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -67,6 +70,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a id="backLinkEmployer" href="" class="nav-link js-scroll-trigger">Back</a>
         </li>
       </ul>
     </div>
@@ -98,8 +104,7 @@
         <h2>or if you have <span class="text-primary">already submitted then</span></h2>
         <form id="applicationCheckForm">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="selectompanyFormUserID" placeholder="name@example.com"
-              required>
+            <input type="text" class="form-control" id="selectompanyFormUserID" placeholder="name@example.com" required>
             <label for="selectompanyFormUserID">UserID</label>
           </div>
           <div class="form-floating mb-3">
@@ -109,6 +114,7 @@
           </div>
           <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
+        <div class="d-flex p-3 justify-content-center"><button id="backChooseCompany" class="btn btn-secondary" type="submit">Back</button></div>
       </div>
     </section>
 
@@ -122,14 +128,15 @@
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="name" type="text" class="form-control" id="registerFormName" placeholder="firstname" required>
+                <input name="name" type="text" class="form-control" id="registerFormName" placeholder="firstname"
+                  required>
                 <label for="registerFormName">Company name</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating">
-                <select name="type" class="form-select" id="registerFormCompanyType" aria-label="Floating label select example"
-                  required>
+                <select name="type" class="form-select" id="registerFormCompanyType"
+                  aria-label="Floating label select example" required>
                   <option selected disabled value="">Choose company type</option>
                   <option value="Ltd">Ltd</option>
                   <option value="PLC">PLC</option>
@@ -143,13 +150,15 @@
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="emailAddress" type="email" class="form-control" id="registerFormEmail" placeholder="name@example.com" required>
+                <input name="emailAddress" type="email" class="form-control" id="registerFormEmail"
+                  placeholder="name@example.com" required>
                 <label for="registerFormEmail">Email address</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="countryOfOrigin" type="text" class="form-control" id="registerFormCountry" placeholder="country" required>
+                <input name="countryOfOrigin" type="text" class="form-control" id="registerFormCountry"
+                  placeholder="country" required>
                 <label for="registerFormCountry">County of Origin</label>
               </div>
             </div>
@@ -160,11 +169,13 @@
               aria-label="Company contact number" required>
           </div>
           <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" placeholder="Leave a comment here" id="registerFormDescription"></textarea>
+            <textarea name="description" class="form-control" placeholder="Leave a comment here"
+              id="registerFormDescription"></textarea>
             <label for="registerFormDescription">Short description of the company:</label>
           </div>
           <div class="form-floating mb-3">
-            <textarea name="lookingFor" class="form-control" placeholder="Leave a comment here" id="registerFormLookingFor"></textarea>
+            <textarea name="lookingFor" class="form-control" placeholder="Leave a comment here"
+              id="registerFormLookingFor"></textarea>
             <label for="registerFormLookingFor">The company is looking for:</label>
           </div>
           <button id="registerCompanyFormBtn" class="btn btn-primary mb-3" type="submit">Submit</button>
@@ -180,6 +191,7 @@
           </div>
           <button id="companyLoginBtn" class="btn btn-primary" type="submit">Submit</button>
         </form>
+        <div class="d-flex p-2 justify-content-center"><button id="backRegisterCompany" class="btn btn-secondary" type="submit">Back</button></div>
       </div>
     </section>
 
@@ -226,13 +238,15 @@
             <div class="row">
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input name="firstName" type="text" class="form-control" id="applyFormFirstname" placeholder="firstname" required>
+                  <input name="firstName" type="text" class="form-control" id="applyFormFirstname"
+                    placeholder="firstname" required>
                   <label for="applyFormFirstname">First Name</label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-floating">
-                  <input name="lastName" type="text" class="form-control" id="applyFormLastname" placeholder="lastname" required>
+                  <input name="lastName" type="text" class="form-control" id="applyFormLastname" placeholder="lastname"
+                    required>
                   <label for="applyFormLastname">Last Name</label>
                 </div>
               </div>
@@ -240,33 +254,36 @@
             <div class="row">
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input name="emailAddress" type="email" class="form-control" id="applyFormEmailUser" placeholder="name@example.com"
-                    required>
+                  <input name="emailAddress" type="email" class="form-control" id="applyFormEmailUser"
+                    placeholder="name@example.com" required>
                   <label for="applyFormEmailUser">Email address</label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-floating mb-3">
-                  <input name="countryOfOrigin" type="text" class="form-control" id="applyFormCountryUser" placeholder="country" required>
+                  <input name="countryOfOrigin" type="text" class="form-control" id="applyFormCountryUser"
+                    placeholder="country" required>
                   <label for="applyFormCountryUser">County of Origin</label>
                 </div>
               </div>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">#</span>
-              <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
+              <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number"
+                aria-label="Phone Number" required>
             </div>
             <div class="row mb-3">
               <div class="col-auto mb-1">
-                <input name="uni0" id="uni0" type="text" class="form-control" placeholder="University" aria-label="University"
-                  required>
+                <input name="uni0" id="uni0" type="text" class="form-control" placeholder="University"
+                  aria-label="University" required>
               </div>
               <div class="col-auto mb-1">
-                <input name="degree0" id="degree0" type="text" class="form-control" placeholder="Degree of Subject" aria-label="Degree"
-                  required>
+                <input name="degree0" id="degree0" type="text" class="form-control" placeholder="Degree of Subject"
+                  aria-label="Degree" required>
               </div>
               <div class="col-auto mb-1">
-                <input name="gradeEdu0" id="gradeEdu0" type="text" class="form-control" placeholder="Grade" aria-label="Grade" required>
+                <input name="gradeEdu0" id="gradeEdu0" type="text" class="form-control" placeholder="Grade"
+                  aria-label="Grade" required>
               </div>
               <div class="col-auto">
                 <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
@@ -274,16 +291,16 @@
             </div>
             <div id="jobForm" class="row mb-3">
               <div class="col-auto mb-1">
-                <input name="job0" id="job0" type="text" class="form-control" placeholder="Job title" aria-label="Job title"
-                  required>
+                <input name="job0" id="job0" type="text" class="form-control" placeholder="Job title"
+                  aria-label="Job title" required>
               </div>
               <div class="col-auto mb-1">
                 <input name="company0" id="company0" type="text" class="form-control" placeholder="Company title"
                   aria-label="Company title" required>
               </div>
               <div class="col-auto mb-1">
-                <input name="durationJob0" id="durationJob0" type="text" class="form-control" placeholder="Duration" aria-label="Duration"
-                  required>
+                <input name="durationJob0" id="durationJob0" type="text" class="form-control" placeholder="Duration"
+                  aria-label="Duration" required>
               </div>
               <div class="col-auto">
                 <button class="btn btn-outline-secondary" type="button" id="button-add-job">+</button>
@@ -294,7 +311,8 @@
                 <button class="btn btn-outline-secondary" type="button" id="button-add-skills">+</button>
               </div>
               <div class="col-auto mb-1">
-                <input name="skill0" id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill" required>
+                <input name="skill0" id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill"
+                  required>
               </div>
             </div>
             <button id="submitEmployeeFormBtn" class="btn btn-primary mb-3" type="submit">Submit form</button>

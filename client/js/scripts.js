@@ -130,6 +130,13 @@ employeePageBtn.addEventListener('click', (event) => {
   companySelectPage.removeAttribute('hidden');
 });
 
+const backChooseCompany = document.getElementById('backChooseCompany');
+backChooseCompany.addEventListener('click', (event) => {
+  event.preventDefault();
+  welcomePage.removeAttribute('hidden');
+  companySelectPage.setAttribute('hidden', '');
+});
+
 // Helper function to get company name and their id
 async function getCompanyNameAndID () {
   const companyNameAndIDResponse = await fetch(
@@ -152,6 +159,13 @@ employerPageBtn.addEventListener('click', (event) => {
   welcomePage.setAttribute('hidden', '');
   companyRegisterLoginPage.removeAttribute('hidden');
   getCompanyNameAndID();
+});
+
+const backRegisterCompany = document.getElementById('backRegisterCompany');
+backRegisterCompany.addEventListener('click', (event) => {
+  event.preventDefault();
+  welcomePage.removeAttribute('hidden');
+  companyRegisterLoginPage.setAttribute('hidden', '');
 });
 
 // Helper function to load employee page by getting company's information
@@ -181,6 +195,14 @@ companySelectForm.addEventListener('submit', (event) => {
   sideEmployeeNav.removeAttribute('hidden');
   employeeContent.removeAttribute('hidden');
   companySelectPage.setAttribute('hidden', '');
+});
+
+const backLinkEmployee = document.getElementById('backLinkEmployee');
+backLinkEmployee.addEventListener('click', (event) => {
+  event.preventDefault();
+  companySelectPage.removeAttribute('hidden');
+  sideEmployeeNav.setAttribute('hidden', '');
+  employeeContent.setAttribute('hidden', '');
 });
 
 /* // Helper function to load employer page with applicant detail chosen by select
@@ -319,6 +341,14 @@ chooseEmployeeSelect.addEventListener('change', (event) => {
   event.preventDefault();
   event.stopPropagation();
   loadEmployerPage(chooseEmployeeSelect.value);
+});
+
+const backLinkEmployer = document.getElementById('backLinkEmployer');
+backLinkEmployer.addEventListener('click', (event) => {
+  event.preventDefault();
+  companyRegisterLoginPage.removeAttribute('hidden');
+  sideEmployerNav.setAttribute('hidden', '');
+  employerContent.setAttribute('hidden', '');
 });
 
 // Idea for template literals to add html from:
