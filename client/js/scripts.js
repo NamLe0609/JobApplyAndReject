@@ -102,6 +102,9 @@ const companyEmailField = document.getElementById('companyEmailField');
 const registerCompanySubmitResponse = document.getElementById(
   'registerCompanySubmitResponse'
 );
+const companyLoginFormResponse = document.getElementById(
+  'companyLoginFormResponse'
+);
 const applyToCompanySubmitResponse = document.getElementById(
   'applyToCompanySubmitResponse'
 );
@@ -273,14 +276,24 @@ async function loadEmployerPageSelect (companyID) {
     endpointRoot + `company/${companyID}/applicantNameAndID`
   );
   const applicantNameAndID = JSON.parse(await applicantDetailsResponse.text());
-  console.log(applicantNameAndID);
-  for (const item of applicantNameAndID) {
-    const option = document.createElement('option');
-    option.text = item.applicantName;
-    option.value = item.id;
-    chooseEmployeeSelect.appendChild(option);
+  if (applicantNameAndID) {
+    for (const item of applicantNameAndID) {
+      const option = document.createElement('option');
+      option.text = item.applicantName;
+      option.value = item.id;
+      chooseEmployeeSelect.appendChild(option);
+    }
+    currentCompanyID = companyID;
+    return true;
+  } else {
+    companyLoginFormResponse.innerHTML = `
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Your CompanyID has not been registered!</strong> Please register with the form above then retry again
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    `;
+    return false;
   }
-  currentCompanyID = companyID;
 }
 
 // Load main employer view (Employer "Login" Form)
@@ -289,10 +302,13 @@ companyLoginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   event.stopPropagation();
   const companyLoginID = document.getElementById('companyLoginID');
-  loadEmployerPageSelect(companyLoginID.value);
-  companyRegisterLoginPage.setAttribute('hidden', '');
-  sideEmployerNav.removeAttribute('hidden');
-  employerContent.removeAttribute('hidden');
+  (async () => {
+    if (await loadEmployerPageSelect(companyLoginID.value)) {
+      companyRegisterLoginPage.setAttribute('hidden', '');
+      sideEmployerNav.removeAttribute('hidden');
+      employerContent.removeAttribute('hidden');
+    }
+  })();
 });
 
 // Helper function to load employer page with applicant detail chosen by select
@@ -312,7 +328,8 @@ async function loadEmployerPage (applicantID) {
     if (`job${i}` in applicantDetails) {
       window[`jobTitleField${i}`].innerText = applicantDetails[`job${i}`];
       window[`jobCompanyField${i}`].innerText = applicantDetails[`company${i}`];
-      window[`jobDurationField${i}`].innerText = applicantDetails[`durationJob${i}`];
+      window[`jobDurationField${i}`].innerText =
+        applicantDetails[`durationJob${i}`];
     } else {
       window[`jobTitleField${i}`].innerText = '';
       window[`jobCompanyField${i}`].innerText = '';
@@ -322,7 +339,8 @@ async function loadEmployerPage (applicantID) {
     if (`uni${i}` in applicantDetails) {
       window[`eduUniField${i}`].innerText = applicantDetails[`uni${i}`];
       window[`eduDegreeField${i}`].innerText = applicantDetails[`degree${i}`];
-      window[`eduGradeField${i}`].innerText = 'GRADE: ' + applicantDetails[`gradeEdu${i}`];
+      window[`eduGradeField${i}`].innerText =
+        'GRADE: ' + applicantDetails[`gradeEdu${i}`];
     } else {
       window[`eduUniField${i}`].innerText = '';
       window[`eduDegreeField${i}`].innerText = '';
@@ -380,7 +398,9 @@ addSkillBtn.addEventListener('click', (event) => {
     submitEmployeeSection.insertBefore(div, submitEmployeeFormBtn);
     addDeleteToBtnSkill(`button-remove-skills${counterSkill - 1}`);
     if (counterSkill === 3) {
-      const btn = document.getElementById(`button-remove-skills${counterSkill - 2}`);
+      const btn = document.getElementById(
+        `button-remove-skills${counterSkill - 2}`
+      );
       btn.disabled = true;
     }
   }
@@ -426,7 +446,9 @@ addEduBtn.addEventListener('click', (event) => {
     submitEmployeeSection.insertBefore(div, jobForm);
     addDeleteToBtnEdu(`button-remove-education${counterEducation - 1}`);
     if (counterEducation === 3) {
-      const btn = document.getElementById(`button-remove-education${counterEducation - 2}`);
+      const btn = document.getElementById(
+        `button-remove-education${counterEducation - 2}`
+      );
       btn.disabled = true;
     }
   }
@@ -439,7 +461,9 @@ function addDeleteToBtnEdu (id) {
     counterEducation--;
     btn.parentNode.parentNode.parentNode.removeChild(btn.parentNode.parentNode);
     if (counterEducation === 2) {
-      btn = document.getElementById(`button-remove-education${counterEducation - 1}`);
+      btn = document.getElementById(
+        `button-remove-education${counterEducation - 1}`
+      );
       btn.disabled = false;
     }
   });

@@ -37,10 +37,17 @@ app.get('/company/:companyID', (req, res) => {
 app.get('/company/:companyID/applicantNameAndID', (req, res) => {
   // Code from ChatGPT
   const companyID = req.params.companyID;
-  const applicantNameWithId = Object.entries(companies.companies[companyID].applicants).map(
-    ([id, applicant]) => ({ id, applicantName: applicant.firstName + ' ' + applicant.lastName })
-  );
-  res.json(applicantNameWithId);
+  if (companyID in companies.companies) {
+    const applicantNameWithId = Object.entries(
+      companies.companies[companyID].applicants
+    ).map(([id, applicant]) => ({
+      id,
+      applicantName: applicant.firstName + ' ' + applicant.lastName
+    }));
+    res.json(applicantNameWithId);
+  } else {
+    res.send(false);
+  }
 });
 
 // GET request to fetch all data from a given company's chosen applicant
