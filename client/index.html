@@ -18,6 +18,25 @@
 </head>
 
 <body id="page-top">
+  <!-- Modal from Bootstrap 5 -->
+  <div id="errorModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ERROR</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>An error has occured while trying to fetch your data. Please try again later</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Navigation for User page-->
   <nav class="sideNav navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideEmployeeNav" hidden>
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -78,366 +97,354 @@
     </div>
   </nav>
   <!-- Page Content-->
-  <div class="container-fluid p-0">
-    <!--Welcome Page-->
-    <section id="welcomePage" class="resume-section">
+  <!--Welcome Page-->
+  <section id="welcomePage" class="resume-section">
+    <div class="resume-section-content">
+      <h1 class="mb-3">Are you an:</h1>
+      <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
+      <button id="employerPageBtn" type="button" class="btn btn-primary btn-lg">Employer</button>
+    </div>
+  </section>
+
+  <!--Select Company Page-->
+  <section id="companySelectPage" class="resume-section" hidden>
+    <div class="resume-section-content">
+      <h1 class="mb-3">Choose a company
+        <span class="text-primary">you want to apply to</span>
+      </h1>
+      <form id="companySelectForm">
+        <label class="form-label">Company</label>
+        <select id="chooseCompanySelect" size="4" class="form-select mb-3" required>
+          <option selected disabled value="">Choose company</option>
+        </select>
+        <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <div class="d-flex p-3 justify-content-center"><button id="backChooseCompany" class="btn btn-secondary"
+          type="submit">Back</button></div>
+    </div>
+  </section>
+
+  <!--Company Register/"Login" Page-->
+  <section id="companyRegisterLoginPage" class="resume-section" hidden>
+    <div class="resume-section-content">
+      <h1 class="mb-3">Register your
+        <span class="text-primary">company</span>
+      </h1>
+      <form id="registerCompanyForm">
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              <input name="name" type="text" class="form-control" id="registerFormName" placeholder="firstname"
+                required>
+              <label for="registerFormName">Company name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating">
+              <select name="type" class="form-select" id="registerFormCompanyType"
+                aria-label="Floating label select example" required>
+                <option selected disabled value="">Choose company type</option>
+                <option value="Ltd">Ltd</option>
+                <option value="PLC">PLC</option>
+                <option value="LLP">LLP</option>
+                <option value="Other">Other</option>
+              </select>
+              <label for="registerFormCompanyType">Company Type</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              <input name="emailAddress" type="email" class="form-control" id="registerFormEmail"
+                placeholder="name@example.com" required>
+              <label for="registerFormEmail">Email address</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              <input name="countryOfOrigin" type="text" class="form-control" id="registerFormCountry"
+                placeholder="country" required>
+              <label for="registerFormCountry">County of Origin</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">#</span>
+          <input name="contactNumber" type="text" class="form-control" placeholder="Company contact number"
+            aria-label="Company contact number" required>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea name="description" class="form-control" placeholder="Leave a comment here"
+            id="registerFormDescription"></textarea>
+          <label for="registerFormDescription">Short description of the company:</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea name="lookingFor" class="form-control" placeholder="Leave a comment here"
+            id="registerFormLookingFor"></textarea>
+          <label for="registerFormLookingFor">The company is looking for:</label>
+        </div>
+        <button id="registerCompanyFormBtn" class="btn btn-primary mb-3" type="submit">Submit</button>
+        <div id="registerCompanySubmitResponse"></div>
+      </form>
+      <h2>If you already
+        <span class="text-primary">registered a company</span>
+      </h2>
+      <form id="companyLoginForm">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="companyLoginID" placeholder="name@example.com" required>
+          <label for="companyLoginID">Company ID</label>
+        </div>
+        <button id="companyLoginBtn" class="btn btn-primary mb-3" type="submit">Submit</button>
+        <div id="companyLoginFormResponse"></div>
+      </form>
+      <div class="d-flex p-2 justify-content-center"><button id="backRegisterCompany" class="btn btn-secondary"
+          type="submit">Back</button></div>
+    </div>
+  </section>
+
+  <!--Main User Page-->
+  <div id="employeeContent" hidden>
+    <!-- About-->
+    <section class="resume-section" id="aboutEmployee">
       <div class="resume-section-content">
-        <h1 class="mb-3">Are you an:</h1>
-        <button id="employeePageBtn" type="button" class="btn btn-primary btn-lg me-3">Employee</button>
-        <button id="employerPageBtn" type="button" class="btn btn-primary btn-lg">Employer</button>
+        <h1 class="mb-0" id="companyNameField">
+          [COMPANY]
+          <span class="text-primary" id="companyTypeField">[LTD/PLC]</span>
+        </h1>
+        <div class="subheading mb-5">
+          <span id="companyLocationField">[LOCATION]</span>
+          · <span id="companyContactNoField">[CONTACT]</span>
+          · <span id="companyEmailField">[NAME@EMAIL.COM]</span>
+        </div>
+        <p class="lead mb-5" id="companyDescriptionField">
+          DESCRIPTION ABOUT COMPANY
+        </p>
       </div>
     </section>
-
-    <!--Select Company Page-->
-    <section id="companySelectPage" class="resume-section" hidden>
+    <hr class="m-0">
+    <!-- Requirement-->
+    <section class="resume-section" id="requirement">
       <div class="resume-section-content">
-        <h1 class="mb-3">Choose a company
-          <span class="text-primary">you want to apply to</span>
-        </h1>
-        <form id="companySelectForm">
-          <label class="form-label">Company</label>
-          <select id="chooseCompanySelect" size="4" class="form-select mb-3" required>
-            <option selected disabled value="">Choose company</option>
-          </select>
-          <button id="companySelectBtn" class="btn btn-primary" type="submit">Submit</button>
-        </form>
-        <h2>or if you have <span class="text-primary">already submitted then</span></h2>
-        <form id="applicationCheckForm">
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="selectompanyFormUserID" placeholder="name@example.com" required>
-            <label for="selectompanyFormUserID">UserID</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="selectCompanyFormCompanyID" placeholder="name@example.com"
-              required>
-            <label for="selectCompanyFormCompanyID">Company ID</label>
-          </div>
-          <button id="companyCheckBtn" class="btn btn-primary" type="submit">Submit</button>
-        </form>
-        <div class="d-flex p-3 justify-content-center"><button id="backChooseCompany" class="btn btn-secondary" type="submit">Back</button></div>
+        <h2 class="mb-5">COMPANY <span class="text-primary">DEMAND</span></h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <p class="lead mb-5" id="companyLookingForField">
+            DESCRIPTION OF NEEDED TALENTS
+          </p>
+        </div>
       </div>
     </section>
-
-    <!--Company Register/"Login" Page-->
-    <section id="companyRegisterLoginPage" class="resume-section" hidden>
+    <hr class="m-0">
+    <!-- Submit form-->
+    <section class="resume-section" id="employeeSubmit">
       <div class="resume-section-content">
-        <h1 class="mb-3">Register your
-          <span class="text-primary">company</span>
+        <h1 class="mb-0">
+          Submit
+          <span class="text-primary">Form</span>
         </h1>
-        <form id="registerCompanyForm">
+        <form id="submitEmployeeForm">
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="name" type="text" class="form-control" id="registerFormName" placeholder="firstname"
+                <input name="firstName" type="text" class="form-control" id="applyFormFirstname" placeholder="firstname"
                   required>
-                <label for="registerFormName">Company name</label>
+                <label for="applyFormFirstname">First Name</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating">
-                <select name="type" class="form-select" id="registerFormCompanyType"
-                  aria-label="Floating label select example" required>
-                  <option selected disabled value="">Choose company type</option>
-                  <option value="Ltd">Ltd</option>
-                  <option value="PLC">PLC</option>
-                  <option value="LLP">LLP</option>
-                  <option value="Other">Other</option>
-                </select>
-                <label for="registerFormCompanyType">Company Type</label>
+                <input name="lastName" type="text" class="form-control" id="applyFormLastname" placeholder="lastname"
+                  required>
+                <label for="applyFormLastname">Last Name</label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="emailAddress" type="email" class="form-control" id="registerFormEmail"
+                <input name="emailAddress" type="email" class="form-control" id="applyFormEmailUser"
                   placeholder="name@example.com" required>
-                <label for="registerFormEmail">Email address</label>
+                <label for="applyFormEmailUser">Email address</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating mb-3">
-                <input name="countryOfOrigin" type="text" class="form-control" id="registerFormCountry"
+                <input name="countryOfOrigin" type="text" class="form-control" id="applyFormCountryUser"
                   placeholder="country" required>
-                <label for="registerFormCountry">County of Origin</label>
+                <label for="applyFormCountryUser">County of Origin</label>
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">#</span>
-            <input name="contactNumber" type="text" class="form-control" placeholder="Company contact number"
-              aria-label="Company contact number" required>
+            <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number"
+              aria-label="Phone Number" required>
           </div>
-          <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" placeholder="Leave a comment here"
-              id="registerFormDescription"></textarea>
-            <label for="registerFormDescription">Short description of the company:</label>
+          <div class="row mb-3">
+            <div class="col-auto mb-1">
+              <input name="uni0" id="uni0" type="text" class="form-control" placeholder="University"
+                aria-label="University" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input name="degree0" id="degree0" type="text" class="form-control" placeholder="Degree of Subject"
+                aria-label="Degree" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input name="gradeEdu0" id="gradeEdu0" type="text" class="form-control" placeholder="Grade"
+                aria-label="Grade" required>
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
+            </div>
           </div>
-          <div class="form-floating mb-3">
-            <textarea name="lookingFor" class="form-control" placeholder="Leave a comment here"
-              id="registerFormLookingFor"></textarea>
-            <label for="registerFormLookingFor">The company is looking for:</label>
+          <div id="jobForm" class="row mb-3">
+            <div class="col-auto mb-1">
+              <input name="job0" id="job0" type="text" class="form-control" placeholder="Job title"
+                aria-label="Job title" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input name="company0" id="company0" type="text" class="form-control" placeholder="Company title"
+                aria-label="Company title" required>
+            </div>
+            <div class="col-auto mb-1">
+              <input name="durationJob0" id="durationJob0" type="text" class="form-control" placeholder="Duration"
+                aria-label="Duration" required>
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-outline-secondary" type="button" id="button-add-job">+</button>
+            </div>
           </div>
-          <button id="registerCompanyFormBtn" class="btn btn-primary mb-3" type="submit">Submit</button>
-          <div id="registerCompanySubmitResponse"></div>
+          <div id="skillForm" class="row mb-3">
+            <div class="col-auto">
+              <button class="btn btn-outline-secondary" type="button" id="button-add-skills">+</button>
+            </div>
+            <div class="col-auto mb-1">
+              <input name="skill0" id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill"
+                required>
+            </div>
+          </div>
+          <button id="submitEmployeeFormBtn" class="btn btn-primary mb-3" type="submit">Submit form</button>
+          <div id="applyToCompanySubmitResponse"></div>
         </form>
-        <h2>If you already
-          <span class="text-primary">registered a company</span>
-        </h2>
-        <form id="companyLoginForm">
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="companyLoginID" placeholder="name@example.com" required>
-            <label for="companyLoginID">Company ID</label>
-          </div>
-          <button id="companyLoginBtn" class="btn btn-primary mb-3" type="submit">Submit</button>
-          <div id="companyLoginFormResponse"></div>
-        </form>
-        <div class="d-flex p-2 justify-content-center"><button id="backRegisterCompany" class="btn btn-secondary" type="submit">Back</button></div>
       </div>
     </section>
+    <hr class="m-0">
+  </div>
 
-    <!--Main User Page-->
-    <div id="employeeContent" hidden>
-      <!-- About-->
-      <section class="resume-section" id="aboutEmployee">
-        <div class="resume-section-content">
-          <h1 class="mb-0" id="companyNameField">
-            [COMPANY]
-            <span class="text-primary" id="companyTypeField">[LTD/PLC]</span>
-          </h1>
-          <div class="subheading mb-5">
-            <span id="companyLocationField">[LOCATION]</span>
-            · <span id="companyContactNoField">[CONTACT]</span>
-            · <span id="companyEmailField">[NAME@EMAIL.COM]</span>
+  <!--Main Employer Page-->
+  <div id="employerContent" hidden>
+    <!--Search For Employee-->
+    <section class="resume-section" id="searchForEmployee">
+      <div class="resume-section-content">
+        <h1 class="mb-0">
+          Search for
+          <span class="text-primary">employees</span>
+        </h1>
+        <label class="form-label">Pick a CV</label>
+        <select id="chooseEmployeeSelect" size="3" class="form-select mb-3" required>
+          <option selected disabled value="">Choose applicants</option>
+        </select>
+      </div>
+    </section>
+    <!-- About-->
+    <section class="resume-section" id="aboutEmployer">
+      <div class="resume-section-content">
+        <h1 id="employeeNameField" class="mb-0">
+          [FIRSTNAME]
+          <span class="text-primary">[LASTNAME]</span>
+        </h1>
+        <div class="subheading mb-5">
+          <span id="employeeCountryField">[COUNTRY OF ORIGIN]</span>
+          · <span id="employeePhoneNoField">[PHONE NO]</span>
+          · <span id="employeeEmailField">[NAME@EMAIL.COM]</span>
+        </div>
+      </div>
+    </section>
+    <hr class="m-0">
+    <!-- Experience-->
+    <section class="resume-section" id="experience">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Experience</h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 class="mb-0" id="jobTitleField0">[JOB TITLE]</h3>
+            <div id="jobCompanyField0" class="subheading mb-3">[COMPANY]</div>
           </div>
-          <p class="lead mb-5" id="companyDescriptionField">
-            DESCRIPTION ABOUT COMPANY
-          </p>
-        </div>
-      </section>
-      <hr class="m-0">
-      <!-- Requirement-->
-      <section class="resume-section" id="requirement">
-        <div class="resume-section-content">
-          <h2 class="mb-5">COMPANY <span class="text-primary">DEMAND</span></h2>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <p class="lead mb-5" id="companyLookingForField">
-              DESCRIPTION OF NEEDED TALENTS
-            </p>
-          </div>
-        </div>
-      </section>
-      <hr class="m-0">
-      <!-- Submit form-->
-      <section class="resume-section" id="employeeSubmit">
-        <div class="resume-section-content">
-          <h1 class="mb-0">
-            Submit
-            <span class="text-primary">Form</span>
-          </h1>
-          <form id="submitEmployeeForm">
-            <div class="row">
-              <div class="col">
-                <div class="form-floating mb-3">
-                  <input name="firstName" type="text" class="form-control" id="applyFormFirstname"
-                    placeholder="firstname" required>
-                  <label for="applyFormFirstname">First Name</label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-floating">
-                  <input name="lastName" type="text" class="form-control" id="applyFormLastname" placeholder="lastname"
-                    required>
-                  <label for="applyFormLastname">Last Name</label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <div class="form-floating mb-3">
-                  <input name="emailAddress" type="email" class="form-control" id="applyFormEmailUser"
-                    placeholder="name@example.com" required>
-                  <label for="applyFormEmailUser">Email address</label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-floating mb-3">
-                  <input name="countryOfOrigin" type="text" class="form-control" id="applyFormCountryUser"
-                    placeholder="country" required>
-                  <label for="applyFormCountryUser">County of Origin</label>
-                </div>
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text">#</span>
-              <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number"
-                aria-label="Phone Number" required>
-            </div>
-            <div class="row mb-3">
-              <div class="col-auto mb-1">
-                <input name="uni0" id="uni0" type="text" class="form-control" placeholder="University"
-                  aria-label="University" required>
-              </div>
-              <div class="col-auto mb-1">
-                <input name="degree0" id="degree0" type="text" class="form-control" placeholder="Degree of Subject"
-                  aria-label="Degree" required>
-              </div>
-              <div class="col-auto mb-1">
-                <input name="gradeEdu0" id="gradeEdu0" type="text" class="form-control" placeholder="Grade"
-                  aria-label="Grade" required>
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-education">+</button>
-              </div>
-            </div>
-            <div id="jobForm" class="row mb-3">
-              <div class="col-auto mb-1">
-                <input name="job0" id="job0" type="text" class="form-control" placeholder="Job title"
-                  aria-label="Job title" required>
-              </div>
-              <div class="col-auto mb-1">
-                <input name="company0" id="company0" type="text" class="form-control" placeholder="Company title"
-                  aria-label="Company title" required>
-              </div>
-              <div class="col-auto mb-1">
-                <input name="durationJob0" id="durationJob0" type="text" class="form-control" placeholder="Duration"
-                  aria-label="Duration" required>
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-job">+</button>
-              </div>
-            </div>
-            <div id="skillForm" class="row mb-3">
-              <div class="col-auto">
-                <button class="btn btn-outline-secondary" type="button" id="button-add-skills">+</button>
-              </div>
-              <div class="col-auto mb-1">
-                <input name="skill0" id="skill0" type="text" class="form-control" placeholder="Skill" aria-label="Skill"
-                  required>
-              </div>
-            </div>
-            <button id="submitEmployeeFormBtn" class="btn btn-primary mb-3" type="submit">Submit form</button>
-            <div id="applyToCompanySubmitResponse"></div>
-          </form>
-        </div>
-      </section>
-      <hr class="m-0">
-    </div>
-
-    <!--Main Employer Page-->
-    <div id="employerContent" hidden>
-      <!--Search For Employee-->
-      <section class="resume-section" id="searchForEmployee">
-        <div class="resume-section-content">
-          <h1 class="mb-0">
-            Search for
-            <span class="text-primary">employees</span>
-          </h1>
-          <label class="form-label">Pick a CV</label>
-          <select id="chooseEmployeeSelect" size="3" class="form-select mb-3" required>
-            <option selected disabled value="">Choose applicants</option>
-          </select>
-        </div>
-      </section>
-      <!-- About-->
-      <section class="resume-section" id="aboutEmployer">
-        <div class="resume-section-content">
-          <h1 id="employeeFirstNameField" class="mb-0">
-            [FIRSTNAME]
-            <span id="employeeLastNameField" class="text-primary">[LASTNAME]</span>
-          </h1>
-          <div class="subheading mb-5">
-            <span id="employeeCountryField">[COUNTRY OF ORIGIN]</span>
-            · <span id="employeePhoneNoField">[PHONE NO]</span>
-            · <span id="employeeEmailField">[NAME@EMAIL.COM]</span>
+          <div class="flex-shrink-0">
+            <span id="jobDurationField0" class="text-primary">[DURATION]</span>
           </div>
         </div>
-      </section>
-      <hr class="m-0">
-      <!-- Experience-->
-      <section class="resume-section" id="experience">
-        <div class="resume-section-content">
-          <h2 class="mb-5">Experience</h2>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 class="mb-0" id="jobTitleField0">[JOB TITLE]</h3>
-              <div id="jobCompanyField0" class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span id="jobDurationField0" class="text-primary">[DURATION]</span>
-            </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 id="jobTitleField1" class="mb-0">[JOB TITLE]</h3>
+            <div id="jobCompanyField1" class="subheading mb-3">[COMPANY]</div>
           </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 id="jobTitleField1" class="mb-0">[JOB TITLE]</h3>
-              <div id="jobCompanyField1" class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span id="jobDurationField1" class="text-primary">[DURATION]</span>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 id="jobTitleField2" class="mb-0">[JOB TITLE]</h3>
-              <div id="jobCompanyField2" class="subheading mb-3">[COMPANY]</div>
-            </div>
-            <div class="flex-shrink-0">
-              <span id="jobDurationField2" class="text-primary">[DURATION]</span>
-            </div>
+          <div class="flex-shrink-0">
+            <span id="jobDurationField1" class="text-primary">[DURATION]</span>
           </div>
         </div>
-      </section>
-      <hr class="m-0">
-      <!-- Education-->
-      <section class="resume-section" id="education">
-        <div class="resume-section-content">
-          <h2 class="mb-5">Education</h2>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 id="eduUniField0" class="mb-0">[UNIVERSITY]</h3>
-              <div id="eduDegreeField0" class="subheading mb-3">[DEGREE]</div>
-              <p id="eduGradeField0">[GRADE]</p>
-            </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 id="jobTitleField2" class="mb-0">[JOB TITLE]</h3>
+            <div id="jobCompanyField2" class="subheading mb-3">[COMPANY]</div>
           </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 id="eduUniField1" class="mb-0">[UNIVERSITY]</h3>
-              <div id="eduDegreeField1" class="subheading mb-3">[DEGREE]</div>
-              <p id="eduGradeField1">[GRADE]</p>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-              <h3 id="eduUniField2" class="mb-0">[UNIVERSITY]</h3>
-              <div id="eduDegreeField2" class="subheading mb-3">[DEGREE]</div>
-              <p id="eduGradeField2">[GRADE]</p>
-            </div>
+          <div class="flex-shrink-0">
+            <span id="jobDurationField2" class="text-primary">[DURATION]</span>
           </div>
         </div>
-      </section>
-      <hr class="m-0">
-      <!-- Skills-->
-      <section class="resume-section" id="skills">
-        <div class="resume-section-content">
-          <h2 class="mb-5">Skills</h2>
-          <ul class="fa-ul mb-0">
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              <h4 id="skillField0">[TOOL]</h4>
-            </li>
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              <h4 id="skillField1">[TOOL]</h4>
-            </li>
-            <li>
-              <span class="fa-li"><i class="fas fa-check"></i></span>
-              <h4 id="skillField2">[TOOL]</h4>
-            </li>
-          </ul>
+      </div>
+    </section>
+    <hr class="m-0">
+    <!-- Education-->
+    <section class="resume-section" id="education">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Education</h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 id="eduUniField0" class="mb-0">[UNIVERSITY]</h3>
+            <div id="eduDegreeField0" class="subheading mb-3">[DEGREE]</div>
+            <p id="eduGradeField0">[GRADE]</p>
+          </div>
         </div>
-      </section>
-      <hr class="m-0">
-    </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 id="eduUniField1" class="mb-0">[UNIVERSITY]</h3>
+            <div id="eduDegreeField1" class="subheading mb-3">[DEGREE]</div>
+            <p id="eduGradeField1">[GRADE]</p>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 id="eduUniField2" class="mb-0">[UNIVERSITY]</h3>
+            <div id="eduDegreeField2" class="subheading mb-3">[DEGREE]</div>
+            <p id="eduGradeField2">[GRADE]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="m-0">
+    <!-- Skills-->
+    <section class="resume-section" id="skills">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Skills</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <span class="fa-li"><i class="fas fa-check"></i></span>
+            <h4 id="skillField0">[TOOL]</h4>
+          </li>
+          <li>
+            <span class="fa-li"><i class="fas fa-check"></i></span>
+            <h4 id="skillField1">[TOOL]</h4>
+          </li>
+          <li>
+            <span class="fa-li"><i class="fas fa-check"></i></span>
+            <h4 id="skillField2">[TOOL]</h4>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <hr class="m-0">
+  </div>
   </div>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

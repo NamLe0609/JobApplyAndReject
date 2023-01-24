@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const endpointRoot = 'http://127.0.0.1:8090/';
 
 //
-// Pages and their navbars
+// Pages and their navbars (and modal)
 //
 
 const welcomePage = document.getElementById('welcomePage');
@@ -48,7 +48,11 @@ const employeeContent = document.getElementById('employeeContent');
 const employerContent = document.getElementById('employerContent');
 const sideEmployeeNav = document.getElementById('sideEmployeeNav');
 const sideEmployerNav = document.getElementById('sideEmployerNav');
-
+// eslint-disable-next-line no-undef
+const errorModal = new bootstrap.Modal(
+  document.getElementById('errorModal'),
+  {}
+);
 //
 // Fields to be filled in
 //
@@ -56,8 +60,7 @@ const sideEmployerNav = document.getElementById('sideEmployerNav');
 // Employee fields
 
 // About
-const employeeFirstName = document.getElementById('employeeFirstNameField');
-const employeeLastName = document.getElementById('employeeLastNameField');
+const employeeNameField = document.getElementById('employeeNameField');
 const employeeCountry = document.getElementById('employeeCountryField');
 const employeePhoneNo = document.getElementById('employeePhoneNoField');
 const employeeEmail = document.getElementById('employeeEmailField');
@@ -173,17 +176,23 @@ backRegisterCompany.addEventListener('click', (event) => {
 
 // Helper function to load employee page by getting company's information
 async function loadEmployeePage (companyID) {
-  const companyDetailsResponse = await fetch(
-    endpointRoot + `company/${companyID}`
-  );
-  const companyDetail = JSON.parse(await companyDetailsResponse.text());
-  companyNameField.innerText = companyDetail.name;
-  companyTypeField.innerText = companyDetail.type;
-  companyLocationField.innerText = companyDetail.countryOfOrigin;
-  companyContactNoField.innerText = companyDetail.contactNumber;
-  companyEmailField.innerText = companyDetail.emailAddress;
-  companyDescriptionField.innerText = companyDetail.description;
-  companyLookingForField.innerText = companyDetail.lookingFor;
+  try {
+    const companyDetailsResponse = await fetch(
+      endpointRoot + `company/${companyID}`
+    );
+    const companyDetail = JSON.parse(await companyDetailsResponse.text());
+    companyNameField.innerText = companyDetail.name;
+    companyTypeField.innerText = companyDetail.type;
+    companyLocationField.innerText = companyDetail.countryOfOrigin;
+    companyContactNoField.innerText = companyDetail.contactNumber;
+    companyEmailField.innerText = companyDetail.emailAddress;
+    companyDescriptionField.innerText = companyDetail.description;
+    companyLookingForField.innerText = companyDetail.lookingFor;
+    return true;
+  } catch {
+    errorModal.show();
+    return false;
+  }
 }
 
 let currentCompanyID;
@@ -193,11 +202,14 @@ const chooseCompanySelect = document.getElementById('chooseCompanySelect');
 companySelectForm.addEventListener('submit', (event) => {
   event.preventDefault();
   event.stopPropagation();
-  loadEmployeePage(chooseCompanySelect.value);
-  currentCompanyID = chooseCompanySelect.value;
-  sideEmployeeNav.removeAttribute('hidden');
-  employeeContent.removeAttribute('hidden');
-  companySelectPage.setAttribute('hidden', '');
+  (async () => {
+    if (await loadEmployeePage(chooseCompanySelect.value)) {
+      currentCompanyID = chooseCompanySelect.value;
+      sideEmployeeNav.removeAttribute('hidden');
+      employeeContent.removeAttribute('hidden');
+      companySelectPage.setAttribute('hidden', '');
+    }
+  })();
 });
 
 const backLinkEmployee = document.getElementById('backLinkEmployee');
@@ -238,7 +250,6 @@ async function applyToCompany () {
     applyToCompanySubmitResponse.innerHTML = `
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Form has been submitted! Your Application ID is: ${await response.text()} </strong>
-      You can now check if your application was successfull by inputting your ApplicationID and Company ID in the page before this
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     `;
@@ -317,10 +328,9 @@ async function loadEmployerPage (applicantID) {
     endpointRoot + `company/${currentCompanyID}/${chooseEmployeeSelect.value}`
   );
   const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
-  employeeFirstName.innerText = applicantDetails.firstName;
-  employeeLastName.innerText = applicantDetails.lastName;
-  employeeFirstName.innerText = applicantDetails.firstName;
-  employeeLastName.innerText = applicantDetails.lastName;
+  employeeNameField.innerHTML = `
+    ${applicantDetails.firstName} <span class="text-primary">${applicantDetails.lastName}</span>
+  `;
   employeeCountry.innerText = applicantDetails.countryOfOrigin;
   employeePhoneNo.innerText = applicantDetails.phoneNumber;
   employeeEmail.innerText = applicantDetails.emailAddress;
