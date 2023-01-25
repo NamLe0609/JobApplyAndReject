@@ -8,7 +8,24 @@
             "contactNumber": "5555555555",
             "description": "Acme Inc. is a leading manufacturer of widgets and other specialized products.",
             "lookingFor": "We are looking for experienced engineers and sales professionals with strong technical and customer service skills.",
-            "applicants": {}
+            "applicants": {
+                "cfc46d7c-fb94-43ee-99b1-728262cbaf4b": {
+                    "firstName": "My",
+                    "lastName": "name",
+                    "emailAddress": "is@very.long",
+                    "countryOfOrigin": "So much so",
+                    "phoneNumber": "that it runs across",
+                    "uni0": "multiple",
+                    "degree0": "fields",
+                    "gradeEdu0": "so",
+                    "job0": "maybe it isnt",
+                    "company0": "the best idea",
+                    "durationJob0": "to include me",
+                    "skill0": "as an entity",
+                    "skill1": "to your",
+                    "skill2": "database"
+                }
+            }
         },
         "8670b29b-6fb4-47af-97ae-a88acf0fcac7": {
             "name": "Beta Corp.",

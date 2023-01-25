@@ -70,12 +70,6 @@ describe('Test the company/applicant service', () => {
       .expect(/applicants/);
   });
 
-  test('GET /company/:companyID includes company applicant list', () => {
-    return request(app)
-      .get('/company/a8349e11-b94c-49d2-8dcd-7565f0b185b1')
-      .expect(/applicants/);
-  });
-
   //
   // Test get /company/:companyID/applicantNameAndID
   //
@@ -169,8 +163,7 @@ describe('Test the company/applicant service', () => {
       contactNumber: '7357-7357-7357',
       description: 'Testing Ltd is a company that tests things by jesting it',
       lookingFor:
-        'We are looking for skilled tests and testers, as well as passed tests',
-      applicants: {}
+        'We are looking for skilled tests and testers, as well as passed tests'
     };
     return request(app).post('/company/new').send(params).expect(200);
   });
@@ -194,7 +187,10 @@ describe('Test the company/applicant service', () => {
       durationJob0: '0.05s',
       skill0: 'Test coverage'
     };
-    return request(app).post('/company/apply/someRandomID123').send(params).expect(500);
+    return request(app)
+      .post('/company/apply/someRandomID123')
+      .send(params)
+      .expect(500);
   });
 
   test('POST /company/apply/:companyID succeeds', () => {
@@ -212,6 +208,9 @@ describe('Test the company/applicant service', () => {
       durationJob0: '0.05s',
       skill0: 'Test coverage'
     };
-    return request(app).post('/company/apply/1a6577d6-f1a8-4a6d-8e1c-b255010c74f3').send(params).expect(200);
+    return request(app)
+      .post('/company/apply/1a6577d6-f1a8-4a6d-8e1c-b255010c74f3')
+      .send(params)
+      .expect(200);
   });
 });
