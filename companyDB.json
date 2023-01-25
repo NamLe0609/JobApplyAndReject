@@ -73,8 +73,7 @@
                     "durationJob0": "2 years",
                     "skill0": "JavaScript",
                     "skill1": "React",
-                    "skill2": "Node.js",
-                    "applicationStatus": "Pending"
+                    "skill2": "Node.js"
                 },
                 "8670b29b-6fb4-47af-97ae-a88acf0fcac7": {
                     "firstName": "Jane",
@@ -90,8 +89,7 @@
                     "durationJob0": "1 year",
                     "skill0": "C++",
                     "skill1": "Python",
-                    "skill2": "MATLAB",
-                    "applicationStatus": "Pending"
+                    "skill2": "MATLAB"
                 }
             }
         },
@@ -118,8 +116,7 @@
                     "durationJob0": "12 seconds",
                     "skill0": "No skill",
                     "skill1": "N/A",
-                    "skill2": "Lack of skill",
-                    "applicationStatus": "Pending"
+                    "skill2": "Lack of skill"
                 }
             }
         }

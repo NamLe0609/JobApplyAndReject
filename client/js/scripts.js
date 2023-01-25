@@ -98,7 +98,6 @@ const skillField2 = document.getElementById('skillField2');
 
 // Employer fields
 const companyNameField = document.getElementById('companyNameField');
-const companyTypeField = document.getElementById('companyTypeField');
 const companyLocationField = document.getElementById('companyLocationField');
 const companyContactNoField = document.getElementById('companyContactNoField');
 const companyEmailField = document.getElementById('companyEmailField');
@@ -181,8 +180,10 @@ async function loadEmployeePage (companyID) {
       endpointRoot + `company/${companyID}`
     );
     const companyDetail = JSON.parse(await companyDetailsResponse.text());
-    companyNameField.innerText = companyDetail.name;
-    companyTypeField.innerText = companyDetail.type;
+    companyNameField.innerHTML = `
+    ${companyDetail.name}
+          <span class="text-primary">${companyDetail.type}</span>
+    `;
     companyLocationField.innerText = companyDetail.countryOfOrigin;
     companyContactNoField.innerText = companyDetail.contactNumber;
     companyEmailField.innerText = companyDetail.emailAddress;
@@ -220,14 +221,6 @@ backLinkEmployee.addEventListener('click', (event) => {
   employeeContent.setAttribute('hidden', '');
 });
 
-/* // Helper function to load employer page with applicant detail chosen by select
-async function loadEmployerPage (applicantID) {
-  const applicantDetailsResponse = await fetch(
-    endpointRoot + `company/${currentCompanyID}/${chooseEmployeeSelect.value}`
-  );
-  const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
-} */
-
 // Submit employee application form
 async function applyToCompany () {
   const submitEmployeeForm = document.getElementById('submitEmployeeForm');
@@ -236,17 +229,22 @@ async function applyToCompany () {
     event.stopPropagation();
     const data = new FormData(submitEmployeeForm);
     const dataJSON = JSON.stringify(Object.fromEntries(data));
-    console.log(dataJSON);
-    const response = await fetch(
-      endpointRoot + `company/apply/${currentCompanyID}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: dataJSON
-      }
-    );
+    let response = 'id';
+    try {
+      response = await fetch(
+        endpointRoot + `company/apply/${currentCompanyID}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: dataJSON
+        }
+      );
+    } catch {
+      errorModal.show();
+      return false;
+    }
     applyToCompanySubmitResponse.innerHTML = `
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Form has been submitted! Your Application ID is: ${await response.text()} </strong>
@@ -254,6 +252,7 @@ async function applyToCompany () {
     </div>
     `;
     submitEmployeeForm.reset();
+    return true;
   });
 }
 
@@ -264,13 +263,19 @@ async function registerCompany () {
     event.preventDefault();
     const data = new FormData(registerCompanyForm);
     const dataJSON = JSON.stringify(Object.fromEntries(data));
-    const response = await fetch(endpointRoot + 'company/new', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: dataJSON
-    });
+    let response = 'id';
+    try {
+      response = await fetch(endpointRoot + 'company/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: dataJSON
+      });
+    } catch {
+      errorModal.show();
+      return false;
+    }
     registerCompanySubmitResponse.innerHTML = `
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Form has been submitted! Your Company ID is: ${await response.text()} </strong> You can now check if you have gotten any applications by inputting your Company ID below
@@ -278,31 +283,39 @@ async function registerCompany () {
     </div>
     `;
     registerCompanyForm.reset();
+    return true;
   });
 }
 
 // Helper function to load employer page's select by getting company's list of applications
 async function loadEmployerPageSelect (companyID) {
-  const applicantDetailsResponse = await fetch(
-    endpointRoot + `company/${companyID}/applicantNameAndID`
-  );
-  const applicantNameAndID = JSON.parse(await applicantDetailsResponse.text());
-  if (applicantNameAndID) {
-    for (const item of applicantNameAndID) {
-      const option = document.createElement('option');
-      option.text = item.applicantName;
-      option.value = item.id;
-      chooseEmployeeSelect.appendChild(option);
-    }
-    currentCompanyID = companyID;
-    return true;
-  } else {
-    companyLoginFormResponse.innerHTML = `
+  try {
+    const applicantDetailsResponse = await fetch(
+      endpointRoot + `company/${companyID}/applicantNameAndID`
+    );
+    const applicantNameAndID = JSON.parse(
+      await applicantDetailsResponse.text()
+    );
+    if (applicantNameAndID) {
+      for (const item of applicantNameAndID) {
+        const option = document.createElement('option');
+        option.text = item.applicantName;
+        option.value = item.id;
+        chooseEmployeeSelect.appendChild(option);
+      }
+      currentCompanyID = companyID;
+      return true;
+    } else {
+      companyLoginFormResponse.innerHTML = `
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Your CompanyID has not been registered!</strong> Please register with the form above then retry again
+      <strong>Invalid CompanyID!</strong> Please register with the form above or input the correct CompanyID then retry again
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     `;
+      return false;
+    }
+  } catch {
+    errorModal.show();
     return false;
   }
 }
@@ -324,44 +337,51 @@ companyLoginForm.addEventListener('submit', (event) => {
 
 // Helper function to load employer page with applicant detail chosen by select
 async function loadEmployerPage (applicantID) {
-  const applicantDetailsResponse = await fetch(
-    endpointRoot + `company/${currentCompanyID}/${chooseEmployeeSelect.value}`
-  );
-  const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
-  employeeNameField.innerHTML = `
+  try {
+    const applicantDetailsResponse = await fetch(
+      endpointRoot + `company/${currentCompanyID}/${applicantID}`
+    );
+    const applicantDetails = JSON.parse(await applicantDetailsResponse.text());
+    employeeNameField.innerHTML = `
     ${applicantDetails.firstName} <span class="text-primary">${applicantDetails.lastName}</span>
   `;
-  employeeCountry.innerText = applicantDetails.countryOfOrigin;
-  employeePhoneNo.innerText = applicantDetails.phoneNumber;
-  employeeEmail.innerText = applicantDetails.emailAddress;
-  for (let i = 0; i <= 2; i++) {
-    if (`job${i}` in applicantDetails) {
-      window[`jobTitleField${i}`].innerText = applicantDetails[`job${i}`];
-      window[`jobCompanyField${i}`].innerText = applicantDetails[`company${i}`];
-      window[`jobDurationField${i}`].innerText =
-        applicantDetails[`durationJob${i}`];
-    } else {
-      window[`jobTitleField${i}`].innerText = '';
-      window[`jobCompanyField${i}`].innerText = '';
-      window[`jobDurationField${i}`].innerText = '';
-    }
+    employeeCountry.innerText = applicantDetails.countryOfOrigin;
+    employeePhoneNo.innerText = applicantDetails.phoneNumber;
+    employeeEmail.innerText = applicantDetails.emailAddress;
+    for (let i = 0; i <= 2; i++) {
+      if (`job${i}` in applicantDetails) {
+        window[`jobTitleField${i}`].innerText = applicantDetails[`job${i}`];
+        window[`jobCompanyField${i}`].innerText =
+          applicantDetails[`company${i}`];
+        window[`jobDurationField${i}`].innerText =
+          applicantDetails[`durationJob${i}`];
+      } else {
+        window[`jobTitleField${i}`].innerText = '';
+        window[`jobCompanyField${i}`].innerText = '';
+        window[`jobDurationField${i}`].innerText = '';
+      }
 
-    if (`uni${i}` in applicantDetails) {
-      window[`eduUniField${i}`].innerText = applicantDetails[`uni${i}`];
-      window[`eduDegreeField${i}`].innerText = applicantDetails[`degree${i}`];
-      window[`eduGradeField${i}`].innerText =
-        'GRADE: ' + applicantDetails[`gradeEdu${i}`];
-    } else {
-      window[`eduUniField${i}`].innerText = '';
-      window[`eduDegreeField${i}`].innerText = '';
-      window[`eduGradeField${i}`].innerText = '';
-    }
+      if (`uni${i}` in applicantDetails) {
+        window[`eduUniField${i}`].innerText = applicantDetails[`uni${i}`];
+        window[`eduDegreeField${i}`].innerText = applicantDetails[`degree${i}`];
+        window[`eduGradeField${i}`].innerText =
+          'GRADE: ' + applicantDetails[`gradeEdu${i}`];
+      } else {
+        window[`eduUniField${i}`].innerText = '';
+        window[`eduDegreeField${i}`].innerText = '';
+        window[`eduGradeField${i}`].innerText = '';
+      }
 
-    if (`skill${i}` in applicantDetails) {
-      window[`skillField${i}`].innerText = applicantDetails[`skill${i}`];
-    } else {
-      window[`skillField${i}`].innerText = '';
+      if (`skill${i}` in applicantDetails) {
+        window[`skillField${i}`].innerText = applicantDetails[`skill${i}`];
+      } else {
+        window[`skillField${i}`].innerText = '';
+      }
     }
+    return true;
+  } catch {
+    errorModal.show();
+    return false;
   }
 }
 

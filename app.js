@@ -35,7 +35,7 @@ app.get('/company/:companyID', (req, res) => {
 
 // GET request to fetch all data from a given company
 app.get('/company/:companyID/applicantNameAndID', (req, res) => {
-  // Code from ChatGPT
+  // Code adapted from ChatGPT
   const companyID = req.params.companyID;
   if (companyID in companies.companies) {
     const applicantNameWithId = Object.entries(
@@ -52,7 +52,6 @@ app.get('/company/:companyID/applicantNameAndID', (req, res) => {
 
 // GET request to fetch all data from a given company's chosen applicant
 app.get('/company/:companyID/:applicantID', (req, res) => {
-  // Code from ChatGPT
   const companyID = req.params.companyID;
   const applicantID = req.params.applicantID;
   res.json(companies.companies[companyID].applicants[applicantID]);
@@ -73,7 +72,6 @@ app.post('/company/apply/:companyID', (req, res) => {
   const key = uuidv4();
   const companyID = req.params.companyID;
   companies.companies[companyID].applicants[key] = req.body;
-  companies.companies[companyID].applicants[key].applicationStatus = 'Pending';
   fs.writeFileSync(fileNameForJSON, JSON.stringify(companies));
   res.send(key);
 });
